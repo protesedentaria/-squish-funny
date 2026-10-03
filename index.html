@@ -63,6 +63,26 @@ h2{margin:15px 0 6px;font-size:28px;letter-spacing:-.7px}
 label{font-size:13px;color:var(--muted);font-weight:700}
 input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin-top:6px;font-size:16px}
 .note{font-size:12px;color:var(--muted);line-height:1.4}
+
+.shop-category{color:var(--ink);text-decoration:none;min-height:106px}
+.shop-category .thumb,.shop-item .thumb{flex:0 0 58px}
+.product-copy{min-width:0}
+.product-copy small{display:block;color:var(--muted);line-height:1.4;margin-top:4px}
+.shop-action{display:block;color:#7652b7;font-size:13px;font-weight:800;margin-top:8px}
+.shop-category:focus-visible,.shop-item a:focus-visible{outline:3px solid #7652b7;outline-offset:3px}
+.shop-item{background:white;border-radius:22px;padding:18px;box-shadow:var(--shadow);margin:16px 0}
+.shop-item-heading{display:flex;align-items:center;gap:12px}
+.shop-item h3{margin:0;font-size:18px}
+.shop-item p{color:var(--muted);line-height:1.45}
+.shop-item .btn{font-size:14px}
+.shop-item .btn:disabled{background:#eee8f4;color:#6b6078;cursor:default}
+.shop-wallet{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#fff0c5;border-radius:18px;padding:16px;margin:14px 0}
+.shop-feedback:empty{display:none}
+.shop-feedback{background:#e4f8ef;border-radius:14px;padding:12px;line-height:1.4}
+.shop-item button:focus-visible{outline:3px solid #7652b7;outline-offset:3px}
+.inventory-list{list-style:none;padding:0}
+.inventory-list li{padding:10px 0;border-bottom:1px solid #eee}
+
 </style>
 
 <style>
@@ -288,11 +308,46 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 <section id="shop" class="screen">
   <a class="back" href="#home">← Voltar</a>
   <h2 data-i18n="materialsShop">Materiais e Loja</h2>
-  <p class="subtitle">Materiais para criar e espaço para os seus Squishes de papel.</p>
-  <div class="product"><div class="thumb">📄</div><div><strong>Papel</strong><br><small>Base para Squish de papel</small></div></a>
-  <div class="product"><div class="thumb">🧻</div><div><strong>Enchimento</strong><br><small>Para deixar o Squish macio</small></div></a>
-  <div class="product"><div class="thumb">🎨</div><div><strong>Canetinhas</strong><br><small>Para decorar seus modelos</small></div></a>
-  <div class="step"><strong>Minha Loja</strong><p>Aqui entrarão os Squishes de papel que você quiser vender.</p><p class="note">Pagamentos, estoque e entrega serão conectados numa etapa posterior.</p></div>
+  <p class="subtitle">Use os pontos que ganhou no jogo para desbloquear materiais virtuais.</p>
+<div class="shop-wallet"><span>⭐ Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
+  <a class="product shop-category" href="#shop-paper"><span class="thumb" aria-hidden="true">📄</span><span class="product-copy"><strong>Papel</strong><small>Escolha os papéis da sua coleção.</small><span class="shop-action">Ver itens →</span></span></a>
+  <a class="product shop-category" href="#shop-filling"><span class="thumb" aria-hidden="true">🧻</span><span class="product-copy"><strong>Enchimento</strong><small>Colecione enchimentos fofinhos.</small><span class="shop-action">Ver itens →</span></span></a>
+  <a class="product shop-category" href="#shop-markers"><span class="thumb" aria-hidden="true">🎨</span><span class="product-copy"><strong>Canetinhas</strong><small>Desbloqueie conjuntos de cores.</small><span class="shop-action">Ver itens →</span></span></a>
+  <a class="btn soft" href="#challenges">🏆 Ganhar mais pontos</a>
+  <a class="btn soft" href="#profile">🎒 Meus materiais</a>
+</section>
+
+<section id="shop-paper" class="screen">
+  <a class="back" href="#shop">← Materiais e Loja</a>
+  <h2>Papel</h2>
+  <p class="subtitle">Escolha os papéis da sua coleção. Cada compra desbloqueia um item virtual para o seu perfil.</p>
+<div class="shop-wallet"><span>⭐ Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
+  <p class="shop-feedback" role="status" aria-live="polite"></p>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">📄</span><h3>Papel branco</h3></div><p>O básico para começar sua coleção.</p><strong class="pill">⭐ 10 pontos</strong><button class="btn pink" data-buy-item="paper-white" onclick="buyMaterial('paper-white')">Comprar por 10 pontos</button></article>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">📄</span><h3>Papel colorido</h3></div><p>Um toque de cor para seu mundo Squish.</p><strong class="pill">⭐ 20 pontos</strong><button class="btn pink" data-buy-item="paper-colors" onclick="buyMaterial('paper-colors')">Comprar por 20 pontos</button></article>
+  <a class="btn soft" href="#challenges">🏆 Ganhar mais pontos</a>
+</section>
+
+<section id="shop-filling" class="screen">
+  <a class="back" href="#shop">← Materiais e Loja</a>
+  <h2>Enchimento</h2>
+  <p class="subtitle">Colecione enchimentos fofinhos. Cada compra desbloqueia um item virtual para o seu perfil.</p>
+<div class="shop-wallet"><span>⭐ Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
+  <p class="shop-feedback" role="status" aria-live="polite"></p>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">🧻</span><h3>Enchimento macio</h3></div><p>Fofura para sua coleção de materiais.</p><strong class="pill">⭐ 15 pontos</strong><button class="btn pink" data-buy-item="filling-soft" onclick="buyMaterial('filling-soft')">Comprar por 15 pontos</button></article>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">🧻</span><h3>Enchimento nuvem</h3></div><p>Uma nuvem de maciez para seu mundo Squish.</p><strong class="pill">⭐ 25 pontos</strong><button class="btn pink" data-buy-item="filling-cloud" onclick="buyMaterial('filling-cloud')">Comprar por 25 pontos</button></article>
+  <a class="btn soft" href="#challenges">🏆 Ganhar mais pontos</a>
+</section>
+
+<section id="shop-markers" class="screen">
+  <a class="back" href="#shop">← Materiais e Loja</a>
+  <h2>Canetinhas</h2>
+  <p class="subtitle">Desbloqueie conjuntos de cores. Cada compra desbloqueia um item virtual para o seu perfil.</p>
+<div class="shop-wallet"><span>⭐ Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
+  <p class="shop-feedback" role="status" aria-live="polite"></p>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">🎨</span><h3>Canetinhas de 12 cores</h3></div><p>As primeiras cores da sua coleção.</p><strong class="pill">⭐ 30 pontos</strong><button class="btn pink" data-buy-item="markers-basic" onclick="buyMaterial('markers-basic')">Comprar por 30 pontos</button></article>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">🎨</span><h3>Canetinhas arco-íris</h3></div><p>Um conjunto especial para colecionar.</p><strong class="pill">⭐ 50 pontos</strong><button class="btn pink" data-buy-item="markers-rainbow" onclick="buyMaterial('markers-rainbow')">Comprar por 50 pontos</button></article>
+  <a class="btn soft" href="#challenges">🏆 Ganhar mais pontos</a>
 </section>
 
 <section id="explore" class="screen">
@@ -833,16 +888,18 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 
 <section id="profile" class="screen">
   <h2 data-i18n="mySquishWorld">Meu Mundo Squish</h2>
+<div class="shop-wallet"><span>⭐ Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
   <p class="subtitle">Seu progresso fica aqui.</p>
   <div class="step">
     <strong id="levelText">Iniciante • 0 pontos</strong>
     <div class="progress"><span id="progressBar"></span></div>
-    <small>100 pontos para chegar ao nível Criador.</small>
+    <small>Seu nível considera todos os pontos ganhos, inclusive os usados na loja.</small>
   </div>
   <div class="grid">
     <div class="card"><span class="icon">✅</span><strong id="madeCount">0 feitos</strong><small>Squishes concluídos</small></div>
     <div class="card"><span class="icon">🏅</span><strong id="achievementCount">0 conquistas</strong><small>Continue criando</small></div>
   </div>
+  <div class="step"><h3>🎒 Meus materiais</h3><div id="materialInventory"></div><a class="btn soft" href="#shop">Visitar a loja</a></div>
 </section>
 
 <nav id="bottomNav" class="bottom">
@@ -864,6 +921,45 @@ const translations = {
 
 let saved = JSON.parse(localStorage.getItem('squishFunnyState') || '{}');
 let points=saved.points||0, made=saved.made||0, achievements=saved.achievements||0, language=saved.language||'pt';
+let earnedPoints=Math.max(saved.earnedPoints||0,points);
+let inventory=saved.inventory&&typeof saved.inventory==='object'&&!Array.isArray(saved.inventory)?saved.inventory:{};
+const materialCatalog={
+  'paper-white':{name:'Papel branco',icon:'📄',price:10},
+  'paper-colors':{name:'Papel colorido',icon:'📄',price:20},
+  'filling-soft':{name:'Enchimento macio',icon:'🧻',price:15},
+  'filling-cloud':{name:'Enchimento nuvem',icon:'🧻',price:25},
+  'markers-basic':{name:'Canetinhas de 12 cores',icon:'🎨',price:30},
+  'markers-rainbow':{name:'Canetinhas arco-íris',icon:'🎨',price:50}
+};
+
+function updateShop(){
+  document.querySelectorAll('[data-shop-balance]').forEach(el=>el.textContent=points+' pontos');
+  document.querySelectorAll('[data-buy-item]').forEach(button=>{
+    const id=button.dataset.buyItem, item=materialCatalog[id], owned=inventory[id]===true;
+    button.disabled=owned||points<item.price;
+    button.textContent=owned?'✓ Adquirido':points<item.price?'Faltam '+(item.price-points)+' pontos':'Comprar por '+item.price+' pontos';
+  });
+  const container=document.getElementById('materialInventory');
+  container.replaceChildren();
+  const owned=Object.keys(materialCatalog).filter(id=>inventory[id]===true);
+  if(!owned.length){container.textContent='Você ainda não tem materiais. Ganhe pontos nos desafios e escolha seus primeiros itens na loja.';return;}
+  const list=document.createElement('ul');list.className='inventory-list';
+  owned.forEach(id=>{const li=document.createElement('li');li.textContent=materialCatalog[id].icon+' '+materialCatalog[id].name;list.append(li);});
+  container.append(list);
+}
+function buyMaterial(id){
+  const item=materialCatalog[id];
+  if(!item||inventory[id]===true||points<item.price) return;
+  points-=item.price;inventory[id]=true;
+  try{saveState();}catch(error){
+    points+=item.price;delete inventory[id];
+    document.querySelectorAll('.shop-feedback').forEach(el=>el.textContent='Não foi possível salvar a compra. Seus pontos foram mantidos. Tente novamente.');
+    return;
+  }
+  updateProfile();
+  document.querySelectorAll('.shop-feedback').forEach(el=>el.textContent=item.name+' adquirido! Está em Meus materiais no seu perfil.');
+}
+
 
 function applyLanguage(){
   document.documentElement.lang = language==='zh' ? 'zh-CN' : language;
@@ -873,7 +969,7 @@ function applyLanguage(){
   });
 }
 function saveState(){
-  localStorage.setItem('squishFunnyState', JSON.stringify({points,made,achievements,language}));
+  localStorage.setItem('squishFunnyState', JSON.stringify({...saved,points,earnedPoints,made,achievements,language,inventory}));
 }
 function chooseLanguage(lang){
   language=lang;
@@ -888,7 +984,7 @@ function show(id){
   document.getElementById(id).classList.add('active');
   const nav=document.getElementById('bottomNav');
   nav.style.display = id==='language' ? 'none':'flex';
-  document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.getAttribute('href')==='#'+id));
+  document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.getAttribute('href')==='#'+(id.startsWith('shop-')?'shop':id)));
   document.getElementById(id).scrollTop=0;
 }
 function syncScreen(){
@@ -904,14 +1000,14 @@ function selectModel(name,emoji,difficulty,time){
   document.getElementById('tutorialDraw').textContent='Faça duas formas iguais de “'+name+'” no papel.';
 }
 function addPoints(n){
-  points+=n; achievements+=1; updateProfile(); saveState();
+  points+=n; earnedPoints+=n; achievements+=1; updateProfile(); saveState();
   alert(language==='en' ? 'Challenge completed! +'+n+' points 🎉' :
         language==='es' ? '¡Desafío completado! +'+n+' puntos 🎉' :
         language==='zh' ? '挑战完成！+'+n+' 分 🎉' :
         'Desafio concluído! Você ganhou '+n+' pontos 🎉');
 }
 function completeSquish(){
-  points+=25; made+=1; achievements+=1; updateProfile(); saveState();
+  points+=25; earnedPoints+=25; made+=1; achievements+=1; updateProfile(); saveState();
   alert(language==='en' ? 'You did it! +25 points 🎉' :
         language==='es' ? '¡Lo lograste! +25 puntos 🎉' :
         language==='zh' ? '完成啦！+25 分 🎉' :
@@ -920,12 +1016,13 @@ function completeSquish(){
 }
 function updateProfile(){
   let level='Iniciante';
-  if(points>=250) level='Mestre do Squish';
-  else if(points>=100) level='Criador';
-  document.getElementById('levelText').textContent=level+' • '+points+' pontos';
+  if(earnedPoints>=250) level='Mestre do Squish';
+  else if(earnedPoints>=100) level='Criador';
+  document.getElementById('levelText').textContent=level+' • '+earnedPoints+' pontos ganhos';
   document.getElementById('madeCount').textContent=made+' feitos';
   document.getElementById('achievementCount').textContent=achievements+' conquistas';
-  document.getElementById('progressBar').style.width=Math.min(points%100,100)+'%';
+  document.getElementById('progressBar').style.width=Math.min(earnedPoints%100,100)+'%';
+  updateShop();
 }
 
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'squish-funny-v2';
+const CACHE_NAME = 'squish-funny-v3';
 const ASSETS = [
   './',
   './index.html',
