@@ -1,0 +1,1163 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Squish Funny</title>
+<style>
+:root{
+  --bg:#fff9fc;
+  --card:#ffffff;
+  --ink:#2f2740;
+  --muted:#746b83;
+  --pink:#ff77b7;
+  --purple:#9b7bff;
+  --yellow:#ffd66b;
+  --mint:#8ee7cf;
+  --blue:#7cc8ff;
+  --shadow:0 10px 30px rgba(83,48,104,.12);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#fff5fa,#f8f4ff 48%,#f4fbff);color:var(--ink)}
+.app{max-width:430px;min-height:100vh;margin:auto;background:rgba(255,255,255,.55);position:relative;overflow:hidden}
+.screen{display:none;padding:22px 18px 96px;min-height:100vh}
+#language{display:block}
+.screen:target{display:block}
+.app:has(.screen:target) #language{display:none}
+.screen.active{display:block}
+.app:has(.screen:target) .screen.active:not(:target){display:none}
+.brand{font-size:34px;font-weight:900;letter-spacing:-1.5px;margin:18px 0 6px}
+.subtitle{color:var(--muted);margin:0 0 22px;line-height:1.45}
+.hero{background:linear-gradient(135deg,#ffd6e8,#e4d8ff);border-radius:28px;padding:22px;box-shadow:var(--shadow);margin:10px 0 18px;position:relative;overflow:hidden}
+.squish{width:118px;height:94px;border-radius:46% 46% 42% 42%;background:linear-gradient(145deg,#ff95c7,#ffbfdd);margin:4px auto 16px;position:relative;box-shadow:inset 0 -10px 18px rgba(255,255,255,.3)}
+.eye{width:9px;height:11px;background:#3b2d45;border-radius:50%;position:absolute;top:38px}
+.eye.left{left:35px}.eye.right{right:35px}
+.mouth{width:18px;height:9px;border-bottom:3px solid #3b2d45;border-radius:0 0 20px 20px;position:absolute;left:50%;top:54px;transform:translateX(-50%)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{display:block;text-decoration:none;background:var(--card);border:none;border-radius:22px;padding:17px;text-align:left;box-shadow:var(--shadow);color:var(--ink);cursor:pointer}
+.card .icon{font-size:29px;display:block;margin-bottom:10px}
+.card strong{font-size:16px}.card small{display:block;color:var(--muted);margin-top:5px;line-height:1.35}
+.btn{display:block;text-align:center;text-decoration:none;width:100%;border:none;border-radius:18px;padding:15px 18px;font-size:16px;font-weight:800;cursor:pointer;background:var(--ink);color:white;margin-top:12px}
+.btn.pink{background:linear-gradient(135deg,var(--pink),var(--purple))}
+.btn.soft{background:#f0eaff;color:#66519d}
+.back{display:inline-block;text-decoration:none;border:none;background:white;border-radius:14px;padding:10px 13px;box-shadow:var(--shadow);cursor:pointer;font-weight:700;color:var(--ink)}
+.langs{display:grid;gap:11px;margin-top:28px}
+.lang{display:block;text-decoration:none;color:var(--ink);background:white;border:2px solid transparent;border-radius:19px;padding:16px;box-shadow:var(--shadow);font-weight:800;cursor:pointer}
+.lang:hover{border-color:#e6d8ff}
+.step{background:white;padding:18px;border-radius:22px;box-shadow:var(--shadow);margin:12px 0}
+.pill{display:inline-block;border-radius:999px;padding:7px 11px;background:#fff1f7;color:#b34e7d;font-weight:800;font-size:12px}
+.progress{height:10px;background:#ece8f3;border-radius:99px;overflow:hidden;margin:9px 0 18px}.progress span{display:block;height:100%;width:35%;background:linear-gradient(90deg,var(--pink),var(--purple))}
+.product{display:flex;align-items:center;gap:12px;background:white;border-radius:20px;padding:14px;margin:11px 0;box-shadow:var(--shadow)}
+.thumb{width:58px;height:58px;border-radius:17px;background:linear-gradient(135deg,#ffe2ef,#dfeaff);display:flex;align-items:center;justify-content:center;font-size:28px}
+.bottom{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(430px,100%);display:flex;justify-content:space-around;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);padding:10px 8px calc(10px + env(safe-area-inset-bottom));border-top:1px solid #eee;z-index:5}
+.nav{text-decoration:none;border:none;background:none;color:#766f80;font-size:12px;cursor:pointer}.nav b{display:block;font-size:21px;margin-bottom:2px}.nav.active{color:#8e63ee}
+h2{margin:15px 0 6px;font-size:28px;letter-spacing:-.7px}
+label{font-size:13px;color:var(--muted);font-weight:700}
+input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin-top:6px;font-size:15px}
+.note{font-size:12px;color:var(--muted);line-height:1.4}
+</style>
+
+<style>
+.print-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.print-card{background:white;border-radius:22px;padding:12px;box-shadow:var(--shadow);text-align:center}
+.print-card svg{width:100%;height:auto;background:#fff;border-radius:16px;border:1px solid #eee}
+.print-card strong{display:block;margin:9px 0 3px}
+.print-card small{color:var(--muted)}
+.print-btn{display:block;text-decoration:none;margin-top:9px;background:#f0eaff;color:#66519d;border-radius:14px;padding:10px;font-weight:800}
+@media print{
+  body *{visibility:hidden}
+  .screen:target, .screen:target *{visibility:visible}
+  .screen:target{position:absolute;left:0;top:0;width:100%;display:block!important}
+  .back,.bottom,.print-btn,h2,.subtitle{display:none!important}
+  .print-grid{grid-template-columns:1fr 1fr;gap:18px}
+  .print-card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+}
+</style>
+
+
+<style>
+.print-library{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.template-card{display:block;text-decoration:none;color:var(--ink);background:#fff;border-radius:22px;padding:12px;box-shadow:var(--shadow);cursor:pointer}
+.template-preview{height:112px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:45px;position:relative;overflow:hidden;border:1px solid #eee}
+.template-preview:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.65),transparent)}
+.template-preview span{position:relative;z-index:1}
+.template-card strong{display:block;margin-top:9px;font-size:15px}.template-card small{color:var(--muted);font-size:12px}
+.print-sheet-wrap{background:#fff;border-radius:22px;padding:10px;box-shadow:var(--shadow);margin:14px 0}
+#printSheet svg{width:100%;height:auto;display:block;background:white;border-radius:14px}
+.print-help{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.legend{background:white;border-radius:14px;padding:10px;font-size:12px;box-shadow:var(--shadow)}
+.cut-demo,.fold-demo{display:inline-block;width:26px;margin-right:7px;vertical-align:middle}.cut-demo{border-top:2px solid #d54468}.fold-demo{border-top:2px dashed #7a6f86}
+@media print{
+  @page{size:A4 portrait;margin:8mm}
+  body{background:white!important}
+  .app{max-width:none!important;width:100%!important;background:white!important;overflow:visible!important}
+  body *{visibility:hidden!important}
+  #print-detail,#print-detail *{visibility:visible!important}
+  #print-detail{display:block!important;position:absolute!important;left:0!important;top:0!important;width:100%!important;padding:0!important;min-height:auto!important}
+  #print-detail .back,#print-detail h2,#print-detail .subtitle,#print-detail .print-help,#print-detail .btn,#bottomNav{display:none!important}
+  .print-sheet-wrap{box-shadow:none!important;padding:0!important;margin:0!important;border-radius:0!important}
+  #printSheet svg{width:190mm!important;max-height:275mm!important;margin:0 auto!important;border-radius:0!important}
+}
+</style>
+
+
+<style>
+.print-library.reference-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.net-card{
+  display:block;
+  text-decoration:none;
+  color:var(--ink);
+  background:#fff;
+  border-radius:20px;
+  padding:10px;
+  box-shadow:var(--shadow);
+}
+.net-card svg{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #eee;
+  border-radius:14px;
+  background:#fff;
+}
+.net-card strong{display:block;margin:9px 2px 2px;font-size:14px}
+.net-card small{display:block;margin:0 2px;color:var(--muted);font-size:11px;line-height:1.3}
+.print-reference-note{
+  background:#fff7fb;
+  border:1px solid #f4d6e4;
+  border-radius:18px;
+  padding:13px 14px;
+  font-size:13px;
+  line-height:1.45;
+  color:#6c5a69;
+  margin-bottom:16px;
+}
+#printSheet svg{width:100%;height:auto;display:block;background:#fff}
+
+
+/* PLUS CUSTOM CREATOR */
+.plus-card{background:linear-gradient(135deg,#2f2740,#6f4bc7);color:#fff;border:0;position:relative;overflow:hidden}
+.plus-card small{color:#eee6ff}.plus-badge{display:inline-flex;align-items:center;gap:6px;background:#ffd66b;color:#4c3710;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:900;letter-spacing:.4px}
+.plus-panel{background:#fff;border-radius:24px;padding:16px;box-shadow:var(--shadow);margin:14px 0}
+.option-row{display:flex;gap:8px;overflow:auto;padding:4px 1px 8px;scrollbar-width:none}.option-row::-webkit-scrollbar{display:none}
+.opt{min-width:58px;height:52px;border:2px solid #eee7f5;background:#fff;border-radius:16px;font-size:24px;display:grid;place-items:center;cursor:pointer}.opt.selected{border-color:#9b7bff;box-shadow:0 0 0 3px #eee8ff}
+.color-opt{width:44px;min-width:44px;height:44px;border-radius:50%;border:4px solid #fff;box-shadow:0 0 0 2px #ece5f5;cursor:pointer}.color-opt.selected{box-shadow:0 0 0 3px #8e63ee}
+.creator-stage{min-height:300px;border-radius:26px;background:linear-gradient(180deg,#fbf8ff,#fff7fb);display:grid;place-items:center;padding:20px;position:relative;overflow:hidden;border:1px solid #f0e8f5}
+#customPreview{width:230px;height:230px;position:relative;display:grid;place-items:center;filter:drop-shadow(0 18px 18px rgba(83,48,104,.16));transition:.2s}
+.custom-shape{width:190px;height:150px;background:var(--custom,#ffd66b);position:relative;display:grid;place-items:center;border:5px solid rgba(255,255,255,.72);box-shadow:inset 0 -10px 0 rgba(0,0,0,.04)}
+.shape-butter{border-radius:26px 26px 42px 42px;transform:rotate(-2deg)}
+.shape-heart{width:158px;height:158px;transform:rotate(45deg);border-radius:28px}.shape-heart:before,.shape-heart:after{content:"";position:absolute;width:158px;height:158px;background:inherit;border-radius:50%;z-index:-1}.shape-heart:before{left:-78px}.shape-heart:after{top:-78px}
+.shape-cloud{width:190px;height:118px;border-radius:70px}.shape-cloud:before,.shape-cloud:after{content:"";position:absolute;background:inherit;border-radius:50%;z-index:-1}.shape-cloud:before{width:110px;height:110px;left:20px;top:-53px}.shape-cloud:after{width:130px;height:130px;right:8px;top:-65px}
+.shape-round{width:165px;height:165px;border-radius:50%}.shape-star{clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 94%,50% 72%,21% 94%,32% 57%,2% 35%,39% 35%);width:185px;height:185px;border:0}
+.face{position:absolute;left:50%;top:51%;transform:translate(-50%,-50%);width:105px;height:72px}.eyes{position:absolute;left:0;right:0;top:8px;display:flex;justify-content:space-between;padding:0 16px;font-size:28px;line-height:1}.mouth{position:absolute;left:50%;top:46px;transform:translateX(-50%);font-size:28px;line-height:1}.detail{position:absolute;right:-6px;top:-12px;font-size:44px;transform:rotate(12deg)}
+.plus-lock{background:linear-gradient(135deg,#fff6d6,#f0e8ff);border:1px solid #eadcff;border-radius:24px;padding:18px;margin:14px 0}.plus-lock h3{margin:5px 0}.plus-lock p{margin:6px 0 12px;color:#6f6575;font-size:14px;line-height:1.45}
+.builder-label{font-size:12px;font-weight:900;color:#6c5f78;text-transform:uppercase;letter-spacing:.65px;margin:16px 0 7px}
+.plus-price-note{font-size:12px;color:#81768c;margin-top:8px}
+@media print{#plus,#home,#bottomNav,.back,.btn,.plus-panel:not(.print-only){display:none!important}}
+
+</style>
+
+
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#ff77b7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Squish Funny">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+
+
+<style>
+.install-card{background:#fff;border-radius:20px;padding:14px 15px;margin:14px 0;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center}
+.install-card .install-icon{font-size:26px}
+.install-card strong{display:block;font-size:14px}
+.install-card small{display:block;color:var(--muted);margin-top:3px;line-height:1.3}
+.install-card button{margin-left:auto;border:0;border-radius:14px;padding:10px 12px;background:linear-gradient(135deg,var(--pink),var(--purple));color:white;font-weight:800;cursor:pointer}
+.install-help{display:none;background:#fff6fb;border:1px solid #f0d8e7;border-radius:16px;padding:12px;margin-top:9px;color:#665b69;font-size:13px;line-height:1.45}
+@media (display-mode: standalone){#installCard{display:none!important}}
+</style>
+
+</head>
+<body>
+<div class="app">
+
+<section id="language" class="screen active">
+  <div class="brand">Squish Funny</div>
+  <p class="subtitle"><span data-i18n="chooseLang">Escolha seu idioma para começar.</span></p>
+
+  <div id="installCard" class="install-card">
+    <div class="install-icon">📱</div>
+    <div style="flex:1"><strong>Testar como aplicativo</strong><small>Instale o Squish Funny na tela inicial do celular.</small></div>
+    <button id="installBtn" type="button">Instalar</button>
+  </div>
+  <div id="installHelp" class="install-help"></div>
+
+  <div class="hero">
+    <div class="squish"><i class="eye left"></i><i class="eye right"></i><i class="mouth"></i></div>
+    <h2 style="text-align:center;margin:0">Create. Squish. Smile.</h2>
+  </div>
+  <div class="langs">
+    <a class="lang" href="#home">🇧🇷 Português</a>
+    <a class="lang" href="#home">🇺🇸 English</a>
+    <a class="lang" href="#home">🇪🇸 Español</a>
+    <a class="lang" href="#home">🇨🇳 中文</a>
+  </div>
+</section>
+
+<section id="home" class="screen">
+  <span class="pill">Nível 1 • Iniciante</span>
+  <div class="hero">
+    <div class="squish"><i class="eye left"></i><i class="eye right"></i><i class="mouth"></i></div>
+    <h2 id="homeTitle"><span data-i18n="whatToday">O que você quer fazer hoje?</span></h2>
+    <p class="subtitle" style="margin-bottom:0"><span data-i18n="createChallengeExplore">Crie, cumpra desafios e descubra novos Squishes.</span></p>
+  </div>
+  <div class="grid">
+    <a class="card" href="#create"><span class="icon">✂️</span><strong data-i18n="createSquish">Criar um Squish</strong><small>Escolha um modelo e faça passo a passo.</small></a>
+    <a class="card" href="#challenges"><span class="icon">🏆</span><strong data-i18n="challenges">Desafios</strong><small>Ganhe pontos e desbloqueie modelos.</small></a>
+    <a class="card" href="#shop"><span class="icon">🛍️</span><strong data-i18n="materials">Materiais</strong><small>Veja o que precisa e onde encontrar.</small></a>
+    <a class="card" href="#explore"><span class="icon">✨</span><strong data-i18n="explore">Explorar</strong><small>Descubra ideias novas para criar.</small></a>
+    <a class="card" href="#printables"><span class="icon">🖨️</span><strong>Moldes para imprimir</strong><small>Escolha um desenho pronto e imprima.</small></a>
+    <a class="card plus-card" href="#plus"><span class="icon">👑</span><strong>Squish Funny Plus</strong><small>Crie seu próprio squish, personalize e gere o molde para imprimir.</small><span class="plus-badge" style="margin-top:9px;width:max-content">PLUS • R$ 5,00</span></a>
+  </div>
+</section>
+
+<section id="create" class="screen">
+  <a class="back" href="#home">← Voltar</a>
+  <h2 data-i18n="createYourSquish">Crie seu Squish</h2>
+  <p class="subtitle">Escolha um modelo para começar. Agora tem várias frutas e outras ideias fofas.</p>
+
+  <h3 style="margin:22px 0 10px">🍓 Frutas</h3>
+  <a class="product" href="#tutorial" onclick="selectModel('Morango fofo','🍓','Fácil','15 min')"><div class="thumb">🍓</div><div><strong>Morango fofo</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Melancia kawaii','🍉','Fácil','15 min')"><div class="thumb">🍉</div><div><strong>Melancia kawaii</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Uvinha fofa','🍇','Fácil','15 min')"><div class="thumb">🍇</div><div><strong>Uvinha fofa</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Banana sorridente','🍌','Fácil','12 min')"><div class="thumb">🍌</div><div><strong>Banana sorridente</strong><br><small>Fácil • 12 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Laranja kawaii','🍊','Fácil','12 min')"><div class="thumb">🍊</div><div><strong>Laranja kawaii</strong><br><small>Fácil • 12 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Limão fofo','🍋','Fácil','12 min')"><div class="thumb">🍋</div><div><strong>Limão fofo</strong><br><small>Fácil • 12 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Maçã feliz','🍎','Fácil','15 min')"><div class="thumb">🍎</div><div><strong>Maçã feliz</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Pera kawaii','🍐','Fácil','15 min')"><div class="thumb">🍐</div><div><strong>Pera kawaii</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Abacaxi fofo','🍍','Médio','20 min')"><div class="thumb">🍍</div><div><strong>Abacaxi fofo</strong><br><small>Médio • 20 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Cerejinhas','🍒','Fácil','15 min')"><div class="thumb">🍒</div><div><strong>Cerejinhas</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Pêssego fofo','🍑','Fácil','15 min')"><div class="thumb">🍑</div><div><strong>Pêssego fofo</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Kiwi kawaii','🥝','Médio','18 min')"><div class="thumb">🥝</div><div><strong>Kiwi kawaii</strong><br><small>Médio • 18 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Manga fofa','🥭','Fácil','15 min')"><div class="thumb">🥭</div><div><strong>Manga fofa</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Mirtilos','🫐','Médio','18 min')"><div class="thumb">🫐</div><div><strong>Mirtilos</strong><br><small>Médio • 18 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Melon Cube','🍈','Médio','20 min')"><div class="thumb">🍈</div><div><strong>Melon Cube</strong><br><small>Médio • 20 min</small></div></a>
+
+  <h3 style="margin:24px 0 10px">🍔 Comidas e fofinhos</h3>
+  <a class="product" href="#tutorial" onclick="selectModel('Hambúrguer','🍔','Médio','25 min')"><div class="thumb">🍔</div><div><strong>Hambúrguer</strong><br><small>Médio • 25 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Butter','🧈','Fácil','12 min')"><div class="thumb">🧈</div><div><strong>Butter</strong><br><small>Fácil • 12 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Dumpling','🥟','Médio','20 min')"><div class="thumb">🥟</div><div><strong>Dumpling</strong><br><small>Médio • 20 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Donut fofo','🍩','Fácil','18 min')"><div class="thumb">🍩</div><div><strong>Donut fofo</strong><br><small>Fácil • 18 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Chocolate kawaii','🍫','Fácil','15 min')"><div class="thumb">🍫</div><div><strong>Chocolate kawaii</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Caixinha de leite','🥛','Médio','20 min')"><div class="thumb">🥛</div><div><strong>Caixinha de leite</strong><br><small>Médio • 20 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Nuvem kawaii','☁️','Fácil','10 min')"><div class="thumb">☁️</div><div><strong>Nuvem kawaii</strong><br><small>Fácil • 10 min</small></div></a>
+  <a class="product" href="#printables" style="text-decoration:none;color:inherit"><div class="thumb">🖨️</div><div><strong>Prefiro imprimir</strong><br><small>Use um molde pronto, sem desenhar</small></div></a>
+</section>
+
+<section id="tutorial" class="screen">
+  <a class="back" href="#create">← Modelos</a>
+  <h2 id="tutorialTitle">Morango fofo 🍓</h2>
+  <span class="pill" id="tutorialMeta">Fácil • 15 min</span>
+  <div class="step"><strong>Você vai precisar</strong><p>Papel, fita transparente, tesoura, canetinhas e enchimento macio.</p><a class="btn soft" href="#shop">Preciso dos materiais</a></div>
+  <div class="step"><strong>1. Desenhe</strong><p id="tutorialDraw">Faça duas formas iguais do modelo escolhido no papel.</p></div>
+  <div class="step"><strong>2. Decore</strong><p>Colora e desenhe o rostinho antes de fechar.</p></div>
+  <div class="step"><strong>3. Monte</strong><p>Una as bordas com fita, deixando uma pequena abertura.</p></div>
+  <div class="step"><strong>4. Encha</strong><p>Coloque o enchimento, feche a abertura e aperte com cuidado.</p></div>
+  <button class="btn pink" onclick="completeSquish()">Consegui fazer!</button>
+</section>
+
+<section id="challenges" class="screen">
+  <a class="back" href="#home">← Voltar</a>
+  <h2 data-i18n="challenges">Desafios</h2>
+  <p class="subtitle">Complete missões para ganhar pontos.</p>
+  <div class="step"><span class="pill">+20 pontos</span><h3>Desafio do dia</h3><p>Faça um Squish inspirado em uma comida.</p><button class="btn pink" onclick="addPoints(20)">Concluir desafio</button></div>
+  <div class="step"><span class="pill">+35 pontos</span><h3>Desafio rápido</h3><p>Crie um Squish em menos de 30 minutos.</p><button class="btn soft" onclick="addPoints(35)">Marcar como concluído</button></div>
+</section>
+
+<section id="shop" class="screen">
+  <a class="back" href="#home">← Voltar</a>
+  <h2 data-i18n="materialsShop">Materiais e Loja</h2>
+  <p class="subtitle">Materiais para criar e espaço para os seus Squishes de papel.</p>
+  <div class="product"><div class="thumb">📄</div><div><strong>Papel</strong><br><small>Base para Squish de papel</small></div></a>
+  <div class="product"><div class="thumb">🧻</div><div><strong>Enchimento</strong><br><small>Para deixar o Squish macio</small></div></a>
+  <div class="product"><div class="thumb">🎨</div><div><strong>Canetinhas</strong><br><small>Para decorar seus modelos</small></div></a>
+  <div class="step"><strong>Minha Loja</strong><p>Aqui entrarão os Squishes de papel que você quiser vender.</p><p class="note">Pagamentos, estoque e entrega serão conectados numa etapa posterior.</p></div>
+</section>
+
+<section id="explore" class="screen">
+  <a class="back" href="#home">← Voltar</a>
+  <h2 data-i18n="explore">Explorar</h2>
+  <p class="subtitle">Ideias para o seu próximo Squish.</p>
+  <div class="grid">
+    <div class="card"><span class="icon">🍩</span><strong>Comidas</strong><small>Donuts, frutas, doces e mais.</small></div>
+    <div class="card"><span class="icon">🐼</span><strong>Animais</strong><small>Panda, gato, coelho e outros.</small></div>
+    <div class="card"><span class="icon">🌈</span><strong>Kawaii</strong><small>Nuvens, estrelas e arco-íris.</small></div>
+    <div class="card"><span class="icon">🎁</span><strong>Surpresa</strong><small>Deixe o app escolher por você.</small></div>
+  </div>
+</section>
+
+
+
+
+<section id="printables" class="screen">
+  <a class="back" href="#home">← Voltar</a>
+  <h2>Moldes para imprimir</h2>
+  <p class="subtitle">Agora os moldes seguem o formato da referência que você mandou: a embalagem já aparece aberta, pronta para imprimir, recortar e dobrar.</p>
+  <div class="print-reference-note"><strong>Como funciona:</strong> toque em um modelo. Ele abre grande, em uma folha branca, com a arte colorida no próprio molde, linhas externas para recortar e linhas tracejadas para dobrar.</div>
+  <div class="print-library reference-grid">
+    
+    <a class="net-card" href="#print-detail" onclick="openPrintable('butter')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Pink Guava Butter">
+        <defs><linearGradient id="m_butter" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dff7a7"/><stop offset="1" stop-color="#ff9fbd"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_butter)" stroke="#e64d78" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_butter)" stroke="#e64d78" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_butter)" stroke="#e64d78" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#e64d78" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#e64d78" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#e64d78" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#e64d78">PINK GUAVA</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#e64d78">BUTTER</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#e64d78" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ff9fbd" opacity=".9"/>
+      </svg>
+      <strong>Pink Guava Butter</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('strawmilk')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Strawberry Milk">
+        <defs><linearGradient id="m_strawmilk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0f4"/><stop offset="1" stop-color="#ffadc8"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_strawmilk)" stroke="#d94673" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_strawmilk)" stroke="#d94673" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_strawmilk)" stroke="#d94673" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#d94673" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#d94673" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#d94673" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#d94673">STRAWBERRY</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#d94673">MILK</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#d94673" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ffadc8" opacity=".9"/>
+      </svg>
+      <strong>Strawberry Milk</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('peachjuice')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Peach Juice">
+        <defs><linearGradient id="m_peachjuice" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0b0"/><stop offset="1" stop-color="#ffb694"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_peachjuice)" stroke="#e86a50" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_peachjuice)" stroke="#e86a50" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_peachjuice)" stroke="#e86a50" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#e86a50" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#e86a50" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#e86a50" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#e86a50">PEACH</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#e86a50">JUICE</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#e86a50" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ffb694" opacity=".9"/>
+      </svg>
+      <strong>Peach Juice</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('meloncube')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Melon Cube">
+        <defs><linearGradient id="m_meloncube" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e0f7a8"/><stop offset="1" stop-color="#a8ebd1"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_meloncube)" stroke="#4c9f7f" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_meloncube)" stroke="#4c9f7f" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_meloncube)" stroke="#4c9f7f" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#4c9f7f" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#4c9f7f" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#4c9f7f" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#4c9f7f">MELON</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#4c9f7f">CUBE</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#4c9f7f" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#a8ebd1" opacity=".9"/>
+      </svg>
+      <strong>Melon Cube</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('blueyogurt')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Blueberry Yogurt">
+        <defs><linearGradient id="m_blueyogurt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d8e5ff"/><stop offset="1" stop-color="#cab5ff"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_blueyogurt)" stroke="#6858be" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_blueyogurt)" stroke="#6858be" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_blueyogurt)" stroke="#6858be" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#6858be" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#6858be" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#6858be" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6858be">BLUEBERRY</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#6858be">YOGURT</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#6858be" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#cab5ff" opacity=".9"/>
+      </svg>
+      <strong>Blueberry Yogurt</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('lemoncandy')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Lemon Candy">
+        <defs><linearGradient id="m_lemoncandy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff5a7"/><stop offset="1" stop-color="#ffd8a3"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_lemoncandy)" stroke="#d59f16" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_lemoncandy)" stroke="#d59f16" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_lemoncandy)" stroke="#d59f16" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#d59f16" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#d59f16" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#d59f16" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#d59f16">LEMON</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#d59f16">CANDY</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#d59f16" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ffd8a3" opacity=".9"/>
+      </svg>
+      <strong>Lemon Candy</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('watergum')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Watermelon Gum">
+        <defs><linearGradient id="m_watergum" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d7f4b3"/><stop offset="1" stop-color="#ff9bb2"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_watergum)" stroke="#df4b68" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_watergum)" stroke="#df4b68" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_watergum)" stroke="#df4b68" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#df4b68" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#df4b68" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#df4b68" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#df4b68">WATERMELON</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#df4b68">GUM</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#df4b68" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ff9bb2" opacity=".9"/>
+      </svg>
+      <strong>Watermelon Gum</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('mangocream')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Mango Cream">
+        <defs><linearGradient id="m_mangocream" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0a8"/><stop offset="1" stop-color="#ffc083"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_mangocream)" stroke="#e27e27" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_mangocream)" stroke="#e27e27" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_mangocream)" stroke="#e27e27" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#e27e27" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#e27e27" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#e27e27" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#e27e27">MANGO</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#e27e27">CREAM</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#e27e27" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ffc083" opacity=".9"/>
+      </svg>
+      <strong>Mango Cream</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('grapesoda')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Grape Soda">
+        <defs><linearGradient id="m_grapesoda" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e7dcff"/><stop offset="1" stop-color="#bba2f2"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_grapesoda)" stroke="#6d50a8" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_grapesoda)" stroke="#6d50a8" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_grapesoda)" stroke="#6d50a8" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#6d50a8" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#6d50a8" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#6d50a8" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6d50a8">GRAPE</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#6d50a8">SODA</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#6d50a8" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#bba2f2" opacity=".9"/>
+      </svg>
+      <strong>Grape Soda</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('cherrycereal')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Cherry Cereal">
+        <defs><linearGradient id="m_cherrycereal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe3ed"/><stop offset="1" stop-color="#ffadc2"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_cherrycereal)" stroke="#d34a6e" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_cherrycereal)" stroke="#d34a6e" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_cherrycereal)" stroke="#d34a6e" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#d34a6e" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#d34a6e" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#d34a6e" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#d34a6e">CHERRY</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#d34a6e">CEREAL</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#d34a6e" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ffadc2" opacity=".9"/>
+      </svg>
+      <strong>Cherry Cereal</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('bananapud')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Banana Pudding">
+        <defs><linearGradient id="m_bananapud" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff4b7"/><stop offset="1" stop-color="#ffe0a0"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_bananapud)" stroke="#c89722" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_bananapud)" stroke="#c89722" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_bananapud)" stroke="#c89722" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#c89722" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#c89722" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#c89722" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c89722">BANANA</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#c89722">PUDDING</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#c89722" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ffe0a0" opacity=".9"/>
+      </svg>
+      <strong>Banana Pudding</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('kiwicookies')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Kiwi Cookies">
+        <defs><linearGradient id="m_kiwicookies" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8f5b8"/><stop offset="1" stop-color="#b6d98f"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_kiwicookies)" stroke="#6c944e" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_kiwicookies)" stroke="#6c944e" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_kiwicookies)" stroke="#6c944e" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#6c944e" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#6c944e" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#6c944e" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6c944e">KIWI</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#6c944e">COOKIES</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#6c944e" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#b6d98f" opacity=".9"/>
+      </svg>
+      <strong>Kiwi Cookies</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('orangejelly')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Orange Jelly">
+        <defs><linearGradient id="m_orangejelly" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe2a9"/><stop offset="1" stop-color="#ffb77e"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_orangejelly)" stroke="#df7b2b" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_orangejelly)" stroke="#df7b2b" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_orangejelly)" stroke="#df7b2b" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#df7b2b" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#df7b2b" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#df7b2b" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#df7b2b">ORANGE</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#df7b2b">JELLY</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#df7b2b" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ffb77e" opacity=".9"/>
+      </svg>
+      <strong>Orange Jelly</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('pinechips')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Pineapple Snack">
+        <defs><linearGradient id="m_pinechips" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0a4"/><stop offset="1" stop-color="#c8eda5"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_pinechips)" stroke="#aa8a1b" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_pinechips)" stroke="#aa8a1b" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_pinechips)" stroke="#aa8a1b" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#aa8a1b" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#aa8a1b" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#aa8a1b" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#aa8a1b">PINEAPPLE</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#aa8a1b">SNACK</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#aa8a1b" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#c8eda5" opacity=".9"/>
+      </svg>
+      <strong>Pineapple Snack</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('appletea')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Apple Tea">
+        <defs><linearGradient id="m_appletea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e5f1b1"/><stop offset="1" stop-color="#ffb1b1"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_appletea)" stroke="#c74e55" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_appletea)" stroke="#c74e55" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_appletea)" stroke="#c74e55" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#c74e55" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#c74e55" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#c74e55" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c74e55">APPLE</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#c74e55">TEA</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#c74e55" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ffb1b1" opacity=".9"/>
+      </svg>
+      <strong>Apple Tea</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('coconutmilk')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Coconut Milk">
+        <defs><linearGradient id="m_coconutmilk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9f2df"/><stop offset="1" stop-color="#cfeadf"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_coconutmilk)" stroke="#688e84" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_coconutmilk)" stroke="#688e84" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_coconutmilk)" stroke="#688e84" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#688e84" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#688e84" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#688e84" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#688e84">COCONUT</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#688e84">MILK</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#688e84" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#cfeadf" opacity=".9"/>
+      </svg>
+      <strong>Coconut Milk</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('donutbox')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Donut Box">
+        <defs><linearGradient id="m_donutbox" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe0ec"/><stop offset="1" stop-color="#d8c3ff"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_donutbox)" stroke="#9c5f96" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_donutbox)" stroke="#9c5f96" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_donutbox)" stroke="#9c5f96" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#9c5f96" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#9c5f96" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#9c5f96" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#9c5f96">STRAWBERRY</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#9c5f96">DONUT</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#9c5f96" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#d8c3ff" opacity=".9"/>
+      </svg>
+      <strong>Donut Box</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('cupcakemix')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Cupcake Mix">
+        <defs><linearGradient id="m_cupcakemix" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9ecff"/><stop offset="1" stop-color="#ffd1e7"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_cupcakemix)" stroke="#6d7ab8" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_cupcakemix)" stroke="#6d7ab8" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_cupcakemix)" stroke="#6d7ab8" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#6d7ab8" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#6d7ab8" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#6d7ab8" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6d7ab8">VANILLA</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#6d7ab8">CUPCAKE</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#6d7ab8" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ffd1e7" opacity=".9"/>
+      </svg>
+      <strong>Cupcake Mix</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('rainbowcandy')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Rainbow Candy">
+        <defs><linearGradient id="m_rainbowcandy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3f4ff"/><stop offset="1" stop-color="#ffd2ea"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_rainbowcandy)" stroke="#6f6ab8" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_rainbowcandy)" stroke="#6f6ab8" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_rainbowcandy)" stroke="#6f6ab8" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#6f6ab8" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#6f6ab8" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#6f6ab8" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6f6ab8">RAINBOW</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#6f6ab8">CANDY</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#6f6ab8" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#ffd2ea" opacity=".9"/>
+      </svg>
+      <strong>Rainbow Candy</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+
+    <a class="net-card" href="#print-detail" onclick="openPrintable('vanillacream')">
+      <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" aria-label="Vanilla Cream">
+        <defs><linearGradient id="m_vanillacream" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff7d8"/><stop offset="1" stop-color="#f0d8ff"/></linearGradient></defs>
+        <rect width="320" height="230" fill="#fff"/>
+        <!-- Reference-style unfolded box -->
+        <rect x="92" y="18" width="136" height="194" rx="3" fill="url(#m_vanillacream)" stroke="#9872a5" stroke-width="2"/>
+        <rect x="18" y="82" width="74" height="66" rx="2" fill="url(#m_vanillacream)" stroke="#9872a5" stroke-width="2"/>
+        <rect x="228" y="82" width="74" height="66" rx="2" fill="url(#m_vanillacream)" stroke="#9872a5" stroke-width="2"/>
+        <line x1="92" y1="82" x2="228" y2="82" stroke="#9872a5" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="148" x2="228" y2="148" stroke="#9872a5" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="92" y1="43" x2="228" y2="43" stroke="#9872a5" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="160" y="102" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#9872a5">VANILLA</text>
+        <text x="160" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#9872a5">CREAM</text>
+        <circle cx="205" cy="115" r="13" fill="#fff" opacity=".75" stroke="#9872a5" stroke-width="1"/>
+        <circle cx="205" cy="115" r="7" fill="#f0d8ff" opacity=".9"/>
+      </svg>
+      <strong>Vanilla Cream</strong>
+      <small>Molde aberto • imprimir, recortar e dobrar</small>
+    </a>
+    
+  </div>
+</section>
+
+<section id="print-detail" class="screen">
+  <a class="back" href="#printables">← Moldes</a>
+  <h2 id="printTitle">Butter Guava</h2>
+  <p class="subtitle" id="printDesc">Molde aberto pronto para imprimir, recortar, dobrar e montar.</p>
+  <div class="print-help">
+    <div class="legend"><span class="cut-demo"></span><strong>Cortar</strong><br><small>Linha contínua</small></div>
+    <div class="legend"><span class="fold-demo"></span><strong>Dobrar</strong><br><small>Linha tracejada</small></div>
+  </div>
+  <div class="print-sheet-wrap"><div id="printSheet"></div></div>
+  <a class="btn pink" href="javascript:window.print()">🖨️ Imprimir este molde</a>
+  <a class="btn soft" href="#printables">Escolher outro molde</a>
+</section>
+
+
+
+<section id="plus" class="screen">
+  <a class="back" href="#home">← Voltar</a>
+  <span class="plus-badge">👑 SQUISH FUNNY PLUS</span>
+  <h2 style="margin-bottom:6px">Crie o seu próprio Squish</h2>
+  <p class="subtitle">Escolha cada parte, veja o resultado na hora e gere um molde exclusivo para imprimir.</p>
+
+  <div class="plus-lock" id="plusGate">
+    <h3>Conteúdo exclusivo Plus • R$ 5,00</h3>
+    <p>O Squish Funny Plus custa R$ 5,00 em compra única. Depois da compra, a pessoa libera o criador exclusivo para montar e imprimir o próprio Squish.</p>
+    <button class="btn pink" onclick="buyPlus()">Comprar Plus por R$ 5,00</button>
+    <div class="plus-price-note">Compra única • R$ 5,00. No app publicado, o valor das vendas será enviado para a conta de recebimento configurada pela proprietária, descontadas as taxas aplicáveis da plataforma de pagamento/loja.</div>
+  </div>
+
+  <div id="plusBuilder" style="display:none">
+    <div class="creator-stage"><div id="customPreview"></div></div>
+
+    <div class="plus-panel">
+      <div class="builder-label">1. Formato</div>
+      <div class="option-row" id="shapeOptions">
+        <button class="opt selected" data-shape="butter" onclick="setCustom('shape','butter',this)" title="Butter">🧈</button>
+        <button class="opt" data-shape="heart" onclick="setCustom('shape','heart',this)" title="Coração">💗</button>
+        <button class="opt" data-shape="cloud" onclick="setCustom('shape','cloud',this)" title="Nuvem">☁️</button>
+        <button class="opt" data-shape="round" onclick="setCustom('shape','round',this)" title="Redondo">🟣</button>
+        <button class="opt" data-shape="star" onclick="setCustom('shape','star',this)" title="Estrela">⭐</button>
+      </div>
+
+      <div class="builder-label">2. Cor</div>
+      <div class="option-row" id="colorOptions">
+        <button class="color-opt selected" style="background:#ffd66b" onclick="setCustom('color','#ffd66b',this)" aria-label="amarelo"></button>
+        <button class="color-opt" style="background:#ff9fc6" onclick="setCustom('color','#ff9fc6',this)" aria-label="rosa"></button>
+        <button class="color-opt" style="background:#b69cff" onclick="setCustom('color','#b69cff',this)" aria-label="roxo"></button>
+        <button class="color-opt" style="background:#8ee7cf" onclick="setCustom('color','#8ee7cf',this)" aria-label="verde"></button>
+        <button class="color-opt" style="background:#7cc8ff" onclick="setCustom('color','#7cc8ff',this)" aria-label="azul"></button>
+        <button class="color-opt" style="background:#ffad7a" onclick="setCustom('color','#ffad7a',this)" aria-label="laranja"></button>
+      </div>
+
+      <div class="builder-label">3. Olhinhos</div>
+      <div class="option-row" id="eyeOptions">
+        <button class="opt selected" onclick="setCustom('eyes','●|●',this)">●●</button>
+        <button class="opt" onclick="setCustom('eyes','^|^',this)">^^</button>
+        <button class="opt" onclick="setCustom('eyes','♥|♥',this)">♥♥</button>
+        <button class="opt" onclick="setCustom('eyes','✦|✦',this)">✦✦</button>
+        <button class="opt" onclick="setCustom('eyes','•|◡',this)">•◡</button>
+      </div>
+
+      <div class="builder-label">4. Boca</div>
+      <div class="option-row" id="mouthOptions">
+        <button class="opt selected" onclick="setCustom('mouth','◡',this)">◡</button>
+        <button class="opt" onclick="setCustom('mouth','ᴗ',this)">ᴗ</button>
+        <button class="opt" onclick="setCustom('mouth','ω',this)">ω</button>
+        <button class="opt" onclick="setCustom('mouth','○',this)">○</button>
+        <button class="opt" onclick="setCustom('mouth','﹏',this)">﹏</button>
+      </div>
+
+      <div class="builder-label">5. Detalhe</div>
+      <div class="option-row" id="detailOptions">
+        <button class="opt selected" onclick="setCustom('detail','',this)">×</button>
+        <button class="opt" onclick="setCustom('detail','🎀',this)">🎀</button>
+        <button class="opt" onclick="setCustom('detail','🌸',this)">🌸</button>
+        <button class="opt" onclick="setCustom('detail','✨',this)">✨</button>
+        <button class="opt" onclick="setCustom('detail','🍓',this)">🍓</button>
+      </div>
+    </div>
+
+    <button class="btn pink" onclick="openCustomPrintable()">🖨️ Gerar meu molde para imprimir</button>
+    <button class="btn soft" onclick="randomCustom()" style="margin-top:9px">🎲 Me surpreenda</button>
+  </div>
+</section>
+
+<section id="custom-print" class="screen">
+  <a class="back" href="#plus">← Voltar ao criador</a>
+  <h2>Seu Squish personalizado</h2>
+  <p class="subtitle">Frente e verso prontos. Imprima em 100%, recorte, una as bordas e deixe uma abertura para o enchimento.</p>
+  <button class="btn pink" onclick="window.print()">Imprimir agora</button>
+  <div class="print-sheet-wrap" style="margin-top:14px"><div id="customPrintSheet"></div></div>
+</section>
+
+<section id="profile" class="screen">
+  <h2 data-i18n="mySquishWorld">Meu Mundo Squish</h2>
+  <p class="subtitle">Seu progresso fica aqui.</p>
+  <div class="step">
+    <strong id="levelText">Iniciante • 0 pontos</strong>
+    <div class="progress"><span id="progressBar"></span></div>
+    <small>100 pontos para chegar ao nível Criador.</small>
+  </div>
+  <div class="grid">
+    <div class="card"><span class="icon">✅</span><strong id="madeCount">0 feitos</strong><small>Squishes concluídos</small></div>
+    <div class="card"><span class="icon">🏅</span><strong id="achievementCount">0 conquistas</strong><small>Continue criando</small></div>
+  </div>
+</section>
+
+<nav id="bottomNav" class="bottom">
+  <a class="nav" href="#home"><b>🏠</b><span data-i18n="home">Início</span></a>
+  <a class="nav" href="#create"><b>✂️</b><span data-i18n="create">Criar</span></a>
+  <a class="nav" href="#challenges"><b>🏆</b><span data-i18n="challenges">Desafios</span></a>
+  <a class="nav" href="#shop"><b>🛍️</b><span data-i18n="shop">Loja</span></a>
+  <a class="nav" href="#profile"><b>👤</b><span data-i18n="profile">Perfil</span></a>
+</nav>
+</div>
+
+<script>
+const translations = {
+  pt:{chooseLang:'Escolha seu idioma para começar.',whatToday:'O que você quer fazer hoje?',createChallengeExplore:'Crie, cumpra desafios e descubra novos Squishes.',createSquish:'Criar um Squish',challenges:'Desafios',materials:'Materiais',explore:'Explorar',createYourSquish:'Crie seu Squish',materialsShop:'Materiais e Loja',mySquishWorld:'Meu Mundo Squish',home:'Início',create:'Criar',shop:'Loja',profile:'Perfil'},
+  en:{chooseLang:'Choose your language to get started.',whatToday:'What do you want to make today?',createChallengeExplore:'Create, complete challenges and discover new Squishes.',createSquish:'Make a Squish',challenges:'Challenges',materials:'Materials',explore:'Explore',createYourSquish:'Make your Squish',materialsShop:'Materials & Shop',mySquishWorld:'My Squish World',home:'Home',create:'Create',shop:'Shop',profile:'Profile'},
+  es:{chooseLang:'Elige tu idioma para comenzar.',whatToday:'¿Qué quieres hacer hoy?',createChallengeExplore:'Crea, completa desafíos y descubre nuevos Squishes.',createSquish:'Crear un Squish',challenges:'Desafíos',materials:'Materiales',explore:'Explorar',createYourSquish:'Crea tu Squish',materialsShop:'Materiales y Tienda',mySquishWorld:'Mi Mundo Squish',home:'Inicio',create:'Crear',shop:'Tienda',profile:'Perfil'},
+  zh:{chooseLang:'选择语言开始使用。',whatToday:'你今天想做什么？',createChallengeExplore:'创作、完成挑战并发现新的 Squish。',createSquish:'制作 Squish',challenges:'挑战',materials:'材料',explore:'探索',createYourSquish:'制作你的 Squish',materialsShop:'材料与商店',mySquishWorld:'我的 Squish 世界',home:'首页',create:'制作',shop:'商店',profile:'我的'}
+};
+
+let saved = JSON.parse(localStorage.getItem('squishFunnyState') || '{}');
+let points=saved.points||0, made=saved.made||0, achievements=saved.achievements||0, language=saved.language||'pt';
+
+function applyLanguage(){
+  document.documentElement.lang = language==='zh' ? 'zh-CN' : language;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.dataset.i18n;
+    if(translations[language] && translations[language][k]) el.textContent=translations[language][k];
+  });
+}
+function saveState(){
+  localStorage.setItem('squishFunnyState', JSON.stringify({points,made,achievements,language}));
+}
+function chooseLanguage(lang){
+  language=lang;
+  applyLanguage();
+  saveState();
+  document.getElementById('bottomNav').style.display='flex';
+  show('home');
+}
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const nav=document.getElementById('bottomNav');
+  nav.style.display = id==='language' ? 'none':'flex';
+  document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.screen===id));
+  window.scrollTo(0,0);
+}
+function nav(el,id){ show(id); }
+function selectModel(name,emoji,difficulty,time){
+  document.getElementById('tutorialTitle').textContent=name+' '+emoji;
+  document.getElementById('tutorialMeta').textContent=difficulty+' • '+time;
+  document.getElementById('tutorialDraw').textContent='Faça duas formas iguais de “'+name+'” no papel.';
+}
+function addPoints(n){
+  points+=n; achievements+=1; updateProfile(); saveState();
+  alert(language==='en' ? 'Challenge completed! +'+n+' points 🎉' :
+        language==='es' ? '¡Desafío completado! +'+n+' puntos 🎉' :
+        language==='zh' ? '挑战完成！+'+n+' 分 🎉' :
+        'Desafio concluído! Você ganhou '+n+' pontos 🎉');
+}
+function completeSquish(){
+  points+=25; made+=1; achievements+=1; updateProfile(); saveState();
+  alert(language==='en' ? 'You did it! +25 points 🎉' :
+        language==='es' ? '¡Lo lograste! +25 puntos 🎉' :
+        language==='zh' ? '完成啦！+25 分 🎉' :
+        'Você conseguiu! +25 pontos 🎉');
+  show('profile');
+}
+function updateProfile(){
+  let level='Iniciante';
+  if(points>=250) level='Mestre do Squish';
+  else if(points>=100) level='Criador';
+  document.getElementById('levelText').textContent=level+' • '+points+' pontos';
+  document.getElementById('madeCount').textContent=made+' feitos';
+  document.getElementById('achievementCount').textContent=achievements+' conquistas';
+  document.getElementById('progressBar').style.width=Math.min(points%100,100)+'%';
+}
+
+
+const printableData = {
+  butter:{name:'Pink Guava Butter',kind:'box',c1:'#dff7a7',c2:'#ff9fbd',accent:'#e64d78',label:'PINK GUAVA',title:'BUTTER',sub:'4 oz • NET WT. 113 g',fruit:'GUAVA'},
+  strawmilk:{name:'Strawberry Milk',kind:'box',c1:'#fff0f4',c2:'#ffadc8',accent:'#d94673',label:'STRAWBERRY',title:'MILK',sub:'sweet & soft',fruit:'BERRY'},
+  peachjuice:{name:'Peach Juice',kind:'box',c1:'#fff0b0',c2:'#ffb694',accent:'#e86a50',label:'PEACH',title:'JUICE',sub:'fresh & cute',fruit:'PEACH'},
+  meloncube:{name:'Melon Cube',kind:'box',c1:'#e0f7a8',c2:'#a8ebd1',accent:'#4c9f7f',label:'MELON',title:'CUBE',sub:'soft melon squish',fruit:'MELON'},
+  blueyogurt:{name:'Blueberry Yogurt',kind:'box',c1:'#d8e5ff',c2:'#cab5ff',accent:'#6858be',label:'BLUEBERRY',title:'YOGURT',sub:'berry cream',fruit:'BERRY'},
+  lemoncandy:{name:'Lemon Candy',kind:'box',c1:'#fff5a7',c2:'#ffd8a3',accent:'#d59f16',label:'LEMON',title:'CANDY',sub:'sweet & sour',fruit:'LEMON'},
+  watergum:{name:'Watermelon Gum',kind:'box',c1:'#d7f4b3',c2:'#ff9bb2',accent:'#df4b68',label:'WATERMELON',title:'GUM',sub:'bubble & smile',fruit:'MELON'},
+  mangocream:{name:'Mango Cream',kind:'box',c1:'#fff0a8',c2:'#ffc083',accent:'#e27e27',label:'MANGO',title:'CREAM',sub:'tropical soft',fruit:'MANGO'},
+  grapesoda:{name:'Grape Soda',kind:'box',c1:'#e7dcff',c2:'#bba2f2',accent:'#6d50a8',label:'GRAPE',title:'SODA',sub:'fizzy cute',fruit:'GRAPE'},
+  cherrycereal:{name:'Cherry Cereal',kind:'box',c1:'#ffe3ed',c2:'#ffadc2',accent:'#d34a6e',label:'CHERRY',title:'CEREAL',sub:'happy breakfast',fruit:'CHERRY'},
+  bananapud:{name:'Banana Pudding',kind:'box',c1:'#fff4b7',c2:'#ffe0a0',accent:'#c89722',label:'BANANA',title:'PUDDING',sub:'creamy & soft',fruit:'BANANA'},
+  kiwicookies:{name:'Kiwi Cookies',kind:'box',c1:'#e8f5b8',c2:'#b6d98f',accent:'#6c944e',label:'KIWI',title:'COOKIES',sub:'tiny treats',fruit:'KIWI'},
+  orangejelly:{name:'Orange Jelly',kind:'box',c1:'#ffe2a9',c2:'#ffb77e',accent:'#df7b2b',label:'ORANGE',title:'JELLY',sub:'juicy squish',fruit:'ORANGE'},
+  pinechips:{name:'Pineapple Snack',kind:'box',c1:'#fff0a4',c2:'#c8eda5',accent:'#aa8a1b',label:'PINEAPPLE',title:'SNACK',sub:'crispy cute',fruit:'PINE'},
+  appletea:{name:'Apple Tea',kind:'box',c1:'#e5f1b1',c2:'#ffb1b1',accent:'#c74e55',label:'APPLE',title:'TEA',sub:'fruity & calm',fruit:'APPLE'},
+  coconutmilk:{name:'Coconut Milk',kind:'box',c1:'#f9f2df',c2:'#cfeadf',accent:'#688e84',label:'COCONUT',title:'MILK',sub:'smooth & sweet',fruit:'COCO'},
+  donutbox:{name:'Donut Box',kind:'box',c1:'#ffe0ec',c2:'#d8c3ff',accent:'#9c5f96',label:'STRAWBERRY',title:'DONUT',sub:'sprinkle joy',fruit:'DONUT'},
+  cupcakemix:{name:'Cupcake Mix',kind:'box',c1:'#d9ecff',c2:'#ffd1e7',accent:'#6d7ab8',label:'VANILLA',title:'CUPCAKE',sub:'bake a smile',fruit:'CUP'},
+  rainbowcandy:{name:'Rainbow Candy',kind:'box',c1:'#e3f4ff',c2:'#ffd2ea',accent:'#6f6ab8',label:'RAINBOW',title:'CANDY',sub:'colorful treats',fruit:'RAINBOW'},
+  vanillacream:{name:'Vanilla Cream',kind:'box',c1:'#fff7d8',c2:'#f0d8ff',accent:'#9872a5',label:'VANILLA',title:'CREAM',sub:'soft cloud',fruit:'VANILLA'}
+};
+
+function boxNetSVG(d){
+  const a=d.accent||'#d84a6c';
+  return `
+  <svg viewBox="0 0 794 1123" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Molde ${d.name}">
+    <defs>
+      <linearGradient id="printGradient" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="${d.c1}"/>
+        <stop offset=".55" stop-color="#fff1df"/>
+        <stop offset="1" stop-color="${d.c2}"/>
+      </linearGradient>
+      <style>
+        .cut{stroke:${a};stroke-width:3;fill:none}
+        .fold{stroke:${a};stroke-width:2;stroke-dasharray:12 9;fill:none;opacity:.72}
+        .main{font-family:Arial,sans-serif;fill:${a}}
+        .note{font-family:Arial,sans-serif;fill:#6f6575}
+      </style>
+    </defs>
+
+    <rect width="794" height="1123" fill="#fff"/>
+    <text x="397" y="48" text-anchor="middle" class="note" font-size="19" font-weight="700">${d.name}</text>
+    <text x="397" y="76" text-anchor="middle" class="note" font-size="13">linha contínua = recortar • linha tracejada = dobrar</text>
+
+    <!-- Large reference-style cross net -->
+    <path d="
+      M180 270
+      L305 270
+      L305 145
+      Q305 132 318 132
+      L580 132
+      Q594 132 594 146
+      L594 270
+      L690 270
+      Q702 270 702 282
+      L702 412
+      Q702 424 690 424
+      L594 424
+      L594 828
+      Q594 842 580 842
+      L318 842
+      Q305 842 305 828
+      L305 424
+      L180 424
+      Q168 424 168 412
+      L168 282
+      Q168 270 180 270
+      Z" fill="url(#printGradient)" stroke="${a}" stroke-width="3"/>
+
+    <!-- Fold guides -->
+    <line x1="305" y1="270" x2="594" y2="270" class="fold"/>
+    <line x1="305" y1="424" x2="594" y2="424" class="fold"/>
+    <line x1="305" y1="590" x2="594" y2="590" class="fold"/>
+    <line x1="305" y1="704" x2="594" y2="704" class="fold"/>
+    <line x1="305" y1="190" x2="594" y2="190" class="fold"/>
+    <line x1="305" y1="270" x2="305" y2="424" class="fold"/>
+    <line x1="594" y1="270" x2="594" y2="424" class="fold"/>
+
+    <!-- Front artwork, inspired by reference composition but original -->
+    <text x="408" y="322" text-anchor="middle" class="main" font-size="25">${d.label}</text>
+    <text x="408" y="365" text-anchor="middle" class="main" font-size="46" font-weight="900">${d.title}</text>
+    <text x="242" y="342" text-anchor="middle" class="main" font-size="26" font-weight="700">4 oz.</text>
+    <text x="242" y="371" text-anchor="middle" class="main" font-size="15">NET WT. (113 G)</text>
+
+    <!-- Original little fruit badge -->
+    <g transform="translate(530,308)">
+      <ellipse cx="30" cy="34" rx="27" ry="30" fill="#ffffff" opacity=".82" stroke="${a}" stroke-width="2"/>
+      <ellipse cx="30" cy="35" rx="17" ry="20" fill="${d.c2}" stroke="${a}" stroke-width="1.4"/>
+      <path d="M27 13 Q30 3 37 13" fill="${d.c1}" stroke="${a}" stroke-width="1.5"/>
+      <circle cx="25" cy="33" r="2" fill="${a}"/><circle cx="35" cy="38" r="2" fill="${a}"/>
+      <circle cx="32" cy="28" r="1.6" fill="${a}"/>
+    </g>
+
+    <!-- Side/back decoration -->
+    <text x="450" y="520" text-anchor="middle" class="main" font-size="18" opacity=".72">${d.sub}</text>
+    <text x="450" y="656" text-anchor="middle" class="main" font-size="16" opacity=".62">SQUISH FUNNY • PAPER SQUISH</text>
+
+    <!-- Scissor and fold legend -->
+    <g transform="translate(170,920)">
+      <rect x="0" y="0" width="454" height="108" rx="18" fill="#faf7fb" stroke="#e7dfe9"/>
+      <text x="25" y="36" class="note" font-size="15" font-weight="700">1. Imprima em 100% / tamanho real</text>
+      <text x="25" y="61" class="note" font-size="15">2. Recorte somente o contorno externo</text>
+      <text x="25" y="86" class="note" font-size="15">3. Dobre nas linhas tracejadas e monte</text>
+    </g>
+  </svg>`;
+}
+
+function shapeSVG(d){
+  const shapeMap={
+    '🍓':'M200 280 C145 205 90 278 110 390 C132 510 190 620 250 680 C310 620 368 510 390 390 C410 278 355 205 300 280 C270 240 230 240 200 280 Z',
+    '🍉':'M95 410 A155 155 0 0 0 405 410 L95 410 Z',
+    '🍎':'M112 400 C92 292 170 250 250 294 C330 250 408 292 388 400 C370 525 307 627 250 665 C193 627 130 525 112 400 Z',
+    '🍊':'M250 265 C355 265 415 345 400 455 C383 580 315 650 250 650 C185 650 117 580 100 455 C85 345 145 265 250 265 Z',
+    '🍋':'M95 450 C118 332 192 275 250 248 C308 275 382 332 405 450 C382 568 308 625 250 652 C192 625 118 568 95 450 Z',
+    '🍐':'M250 255 C302 280 322 335 320 380 C395 415 392 540 330 612 C286 665 214 665 170 612 C108 540 105 415 180 380 C178 335 198 280 250 255 Z',
+    '🥝':'M250 260 C360 260 420 340 405 455 C390 570 325 645 250 645 C175 645 110 570 95 455 C80 340 140 260 250 260 Z',
+    '🍍':'M250 315 C335 315 370 395 360 500 C350 595 305 655 250 655 C195 655 150 595 140 500 C130 395 165 315 250 315 Z',
+    '🍒':'M140 470 C95 405 140 345 205 365 C250 380 265 440 235 490 C205 540 160 535 140 470 Z M265 470 C220 405 265 345 330 365 C375 380 390 440 360 490 C330 540 285 535 265 470 Z',
+    '🍇':'M250 300 C310 305 350 350 342 405 C390 425 388 490 350 515 C360 575 300 615 250 585 C200 615 140 575 150 515 C112 490 110 425 158 405 C150 350 190 305 250 300 Z'
+  };
+  const p=shapeMap[d.emoji]||shapeMap['🍓'];
+  function face(x){return `<g transform="translate(${x},0)"><path d="${p}" fill="url(#fruit)" stroke="#d84a6c" stroke-width="4"/><text x="250" y="430" text-anchor="middle" font-size="82">${d.emoji}</text><circle cx="225" cy="500" r="7" fill="#493f51"/><circle cx="275" cy="500" r="7" fill="#493f51"/><path d="M235 527 Q250 545 265 527" fill="none" stroke="#493f51" stroke-width="5"/><text x="250" y="590" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="#8c3659">${d.name.toUpperCase()}</text></g>`}
+  return `<svg viewBox="0 0 1123 794" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Molde ${d.name}"><defs><linearGradient id="fruit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${d.c1}"/><stop offset="1" stop-color="${d.c2}"/></linearGradient></defs><rect width="1123" height="794" fill="#fff"/><text x="561" y="42" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#5d5366">${d.name} • FRENTE E VERSO PRONTOS</text><text x="561" y="68" text-anchor="middle" font-family="Arial" font-size="14" fill="#5d5366">Recorte as duas peças, una com fita deixando uma abertura e coloque enchimento</text>${face(20)}${face(575)}<text x="561" y="748" text-anchor="middle" font-family="Arial" font-size="14" fill="#5d5366">Linha rosa = recorte • deixe cerca de 1 cm sem fechar para colocar o enchimento</text></svg>`;
+}
+
+function openPrintable(key){
+  const d=printableData[key]||printableData.butter;
+  document.getElementById('printTitle').textContent=d.name;
+  document.getElementById('printDesc').textContent='Molde de embalagem aberto, no estilo da referência: imprima em tamanho real, recorte o contorno externo e dobre nas linhas tracejadas.';
+  document.getElementById('printSheet').innerHTML=boxNetSVG(d);
+}
+openPrintable('butter');
+
+
+// --- Squish Funny Plus: criador personalizado ---
+const customSquish={shape:'butter',color:'#ffd66b',eyes:'●|●',mouth:'◡',detail:''};
+function buyPlus(){
+  const ok = confirm('Comprar Squish Funny Plus por R$ 5,00?\n\nNesta versão de demonstração não há cobrança real.');
+  if(ok){
+    unlockPlus();
+    alert('Plus liberado na demonstração! No aplicativo publicado, aqui entra o pagamento real de R$ 5,00.');
+  }
+}
+
+function unlockPlus(){
+  document.getElementById('plusGate').style.display='none';
+  document.getElementById('plusBuilder').style.display='block';
+  renderCustom();
+}
+function setCustom(type,value,el){
+  customSquish[type]=value;
+  const parent=el && el.parentElement;
+  if(parent) parent.querySelectorAll('button').forEach(b=>b.classList.remove('selected'));
+  if(el) el.classList.add('selected');
+  renderCustom();
+}
+function renderCustom(){
+  const p=document.getElementById('customPreview'); if(!p) return;
+  const e=customSquish.eyes.split('|');
+  p.innerHTML=`<div class="custom-shape shape-${customSquish.shape}" style="--custom:${customSquish.color}"><div class="face"><div class="eyes"><span>${e[0]}</span><span>${e[1]||e[0]}</span></div><div class="mouth">${customSquish.mouth}</div></div><div class="detail">${customSquish.detail}</div></div>`;
+}
+function randomCustom(){
+  const shapes=['butter','heart','cloud','round','star'];
+  const colors=['#ffd66b','#ff9fc6','#b69cff','#8ee7cf','#7cc8ff','#ffad7a'];
+  const eyes=['●|●','^|^','♥|♥','✦|✦','•|◡'];
+  const mouths=['◡','ᴗ','ω','○','﹏'];
+  const details=['','🎀','🌸','✨','🍓'];
+  customSquish.shape=shapes[Math.floor(Math.random()*shapes.length)];
+  customSquish.color=colors[Math.floor(Math.random()*colors.length)];
+  customSquish.eyes=eyes[Math.floor(Math.random()*eyes.length)];
+  customSquish.mouth=mouths[Math.floor(Math.random()*mouths.length)];
+  customSquish.detail=details[Math.floor(Math.random()*details.length)];
+  document.querySelectorAll('#plusBuilder .selected').forEach(b=>b.classList.remove('selected'));
+  renderCustom();
+}
+function customShapePath(shape,xoff=0){
+  const m={
+    butter:`M${80+xoff} 170 Q${80+xoff} 125 ${125+xoff} 125 H${375+xoff} Q${420+xoff} 125 ${420+xoff} 170 V430 Q${420+xoff} 470 ${380+xoff} 470 H${120+xoff} Q${80+xoff} 470 ${80+xoff} 430 Z`,
+    heart:`M${250+xoff} 465 C${210+xoff} 420 ${95+xoff} 340 ${95+xoff} 235 C${95+xoff} 145 ${205+xoff} 115 ${250+xoff} 195 C${295+xoff} 115 ${405+xoff} 145 ${405+xoff} 235 C${405+xoff} 340 ${290+xoff} 420 ${250+xoff} 465 Z`,
+    cloud:`M${120+xoff} 410 C${65+xoff} 410 ${60+xoff} 325 ${120+xoff} 302 C${105+xoff} 220 ${200+xoff} 170 ${260+xoff} 225 C${315+xoff} 155 ${430+xoff} 225 ${415+xoff} 310 C${475+xoff} 330 ${460+xoff} 410 ${400+xoff} 410 Z`,
+    round:`M${250+xoff} 110 A175 175 0 1 1 ${249+xoff} 110 Z`,
+    star:`M${250+xoff} 105 L${292+xoff} 225 L${420+xoff} 228 L${317+xoff} 304 L${355+xoff} 430 L${250+xoff} 355 L${145+xoff} 430 L${183+xoff} 304 L${80+xoff} 228 L${208+xoff} 225 Z`
+  }; return m[shape]||m.butter;
+}
+function customFaceSVG(x){
+  const e=customSquish.eyes.split('|');
+  return `<path d="${customShapePath(customSquish.shape,x)}" fill="${customSquish.color}" stroke="#8e63ee" stroke-width="4"/><text x="${220+x}" y="300" text-anchor="middle" font-family="Arial" font-size="42" fill="#44394f">${e[0]}</text><text x="${280+x}" y="300" text-anchor="middle" font-family="Arial" font-size="42" fill="#44394f">${e[1]||e[0]}</text><text x="${250+x}" y="355" text-anchor="middle" font-family="Arial" font-size="43" fill="#44394f">${customSquish.mouth}</text><text x="${360+x}" y="180" text-anchor="middle" font-size="45">${customSquish.detail}</text>`;
+}
+function customPrintableSVG(){
+  return `<svg viewBox="0 0 1123 794" xmlns="http://www.w3.org/2000/svg"><rect width="1123" height="794" fill="#fff"/><text x="561" y="48" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#5d5366">MEU SQUISH PLUS • FRENTE E VERSO</text><text x="561" y="76" text-anchor="middle" font-family="Arial" font-size="14" fill="#6f6575">Recorte as duas peças, una as bordas e deixe uma abertura para colocar enchimento</text>${customFaceSVG(15)}${customFaceSVG(575)}<line x1="561" y1="100" x2="561" y2="670" stroke="#eadff1" stroke-dasharray="9 8"/><text x="561" y="744" text-anchor="middle" font-family="Arial" font-size="14" fill="#6f6575">Exclusivo Squish Funny Plus • criado por você</text></svg>`;
+}
+function openCustomPrintable(){
+  const el=document.getElementById('customPrintSheet');
+  if(el) el.innerHTML=customPrintableSVG();
+  location.hash='custom-print';
+}
+renderCustom();
+
+applyLanguage();
+updateProfile();
+</script>
+
+<script>
+(function(){
+  let deferredPrompt = null;
+  const installBtn = document.getElementById('installBtn');
+  const installHelp = document.getElementById('installHelp');
+  const installCard = document.getElementById('installCard');
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  if (isStandalone && installCard) installCard.style.display='none';
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (installBtn) installBtn.textContent = 'Instalar';
+  });
+
+  if (installBtn) installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      return;
+    }
+    const ua = navigator.userAgent || '';
+    const ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    installHelp.style.display='block';
+    installHelp.innerHTML = ios
+      ? '<strong>No iPhone:</strong> abra esta página no Safari, toque em <strong>Compartilhar</strong> e depois em <strong>Adicionar à Tela de Início</strong>.'
+      : '<strong>No Android:</strong> abra o menu do navegador e escolha <strong>Instalar app</strong> ou <strong>Adicionar à tela inicial</strong>.';
+  });
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  }
+})();
+</script>
+
+</body>
+</html>
+
+<style>
+#bottomNav{display:none}
+.app:has(.screen:target) #bottomNav{display:flex}
+.product{display:flex;align-items:center;gap:12px;background:white;border-radius:20px;padding:14px;margin:11px 0;box-shadow:var(--shadow)}
+</style>
