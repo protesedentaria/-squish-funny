@@ -83,6 +83,17 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 .inventory-list{list-style:none;padding:0}
 .inventory-list li{padding:10px 0;border-bottom:1px solid #eee}
 
+
+/* Vector icons keep the same artwork across phones and computers. */
+.ui-icon{display:inline-block;width:1.35em;height:1.35em;vertical-align:-.28em;flex-shrink:0}
+.card .icon .ui-icon{width:34px;height:34px}
+.thumb .ui-icon{width:34px;height:34px}
+.nav b .ui-icon{width:26px;height:26px}
+.nav.active .ui-icon{filter:drop-shadow(0 2px 3px #d6c5ff)}
+.opt .ui-icon{width:30px;height:30px}
+.detail .ui-icon{width:44px;height:44px}
+.install-icon .ui-icon{width:30px;height:30px}
+.inventory-list .ui-icon{width:28px;height:28px;margin-right:6px}
 </style>
 
 <style>
@@ -217,7 +228,7 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
   <p class="subtitle"><span data-i18n="chooseLang">Escolha seu idioma para começar.</span></p>
 
   <div id="installCard" class="install-card">
-    <div class="install-icon">📱</div>
+    <div class="install-icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="18" height="28" rx="4" fill="#dcd2ff"/><path d="M13 6h6M14 26h4"/></svg></div>
     <div style="flex:1"><strong>Testar como aplicativo</strong><small>Instale o Squish Funny na tela inicial do celular.</small></div>
     <button id="installBtn" type="button">Instalar</button>
   </div>
@@ -243,12 +254,12 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
     <p class="subtitle" style="margin-bottom:0"><span data-i18n="createChallengeExplore">Crie, cumpra desafios e descubra novos Squishes.</span></p>
   </div>
   <div class="grid">
-    <a class="card" href="#create"><span class="icon">✂️</span><strong data-i18n="createSquish">Criar um Squish</strong><small>Escolha um modelo e faça passo a passo.</small></a>
-    <a class="card" href="#challenges"><span class="icon">🏆</span><strong data-i18n="challenges">Desafios</strong><small>Ganhe pontos e desbloqueie modelos.</small></a>
-    <a class="card" href="#shop"><span class="icon">🛍️</span><strong data-i18n="materials">Materiais</strong><small>Veja o que precisa e onde encontrar.</small></a>
-    <a class="card" href="#explore"><span class="icon">✨</span><strong data-i18n="explore">Explorar</strong><small>Descubra ideias novas para criar.</small></a>
-    <a class="card" href="#printables"><span class="icon">🖨️</span><strong>Moldes para imprimir</strong><small>Escolha um desenho pronto e imprima.</small></a>
-    <a class="card plus-card" href="#plus"><span class="icon">👑</span><strong>Squish Funny Plus</strong><small>Crie seu próprio squish, personalize e gere o molde para imprimir.</small><span class="plus-badge" style="margin-top:9px;width:max-content">PLUS • R$ 5,00</span></a>
+    <a class="card" href="#create"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="23" r="5" fill="#ffafd2"/><circle cx="24" cy="23" r="5" fill="#dcd2ff"/><path d="m11 19 13-15M21 19 8 4"/></svg></span><strong data-i18n="createSquish">Criar um Squish</strong><small>Escolha um modelo e faça passo a passo.</small></a>
+    <a class="card" href="#challenges"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h14v10a7 7 0 0 1-14 0Z" fill="#ffd66b"/><path d="M9 7H4v5q0 6 7 6M23 7h5v5q0 6-7 6M16 21v6M10 28h12"/></svg></span><strong data-i18n="challenges">Desafios</strong><small>Ganhe pontos e desbloqueie modelos.</small></a>
+    <a class="card" href="#shop"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="22" height="20" rx="4" fill="#ffafd2"/><path d="M11 11V7a5 5 0 0 1 10 0v4"/></svg></span><strong data-i18n="materials">Materiais</strong><small>Veja o que precisa e onde encontrar.</small></a>
+    <a class="card" href="#explore"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 3 9 9 4-9 3-3 10-3-10-9-3 9-4Z" fill="#ffd66b"/><path d="m26 2 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" fill="#bda5ff" stroke="none"/></svg></span><strong data-i18n="explore">Explorar</strong><small>Descubra ideias novas para criar.</small></a>
+    <a class="card" href="#printables"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12V3h14v9" fill="#e3dcff"/><rect x="3" y="11" width="26" height="15" rx="4" fill="#bda5ff"/><path d="M8 20h16v10H8Z" fill="white"/><path d="M23 16h1M12 24h8"/></svg></span><strong>Moldes para imprimir</strong><small>Escolha um desenho pronto e imprima.</small></a>
+    <a class="card plus-card" href="#plus"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 7 6 6-10 6 10 7-6-3 19H6Z" fill="#ffd66b"/><path d="M7 22h18"/></svg></span><strong>Squish Funny Plus</strong><small>Crie seu próprio squish, personalize e gere o molde para imprimir.</small><span class="plus-badge" style="margin-top:9px;width:max-content">PLUS • R$ 5,00</span></a>
   </div>
 </section>
 
@@ -257,37 +268,37 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
   <h2 data-i18n="createYourSquish">Crie seu Squish</h2>
   <p class="subtitle">Escolha um modelo para começar. Agora tem várias frutas e outras ideias fofas.</p>
 
-  <h3 style="margin:22px 0 10px">🍓 Frutas</h3>
-  <a class="product" href="#tutorial" onclick="selectModel('Morango fofo','🍓','Fácil','15 min')"><div class="thumb">🍓</div><div><strong>Morango fofo</strong><br><small>Fácil • 15 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Melancia kawaii','🍉','Fácil','15 min')"><div class="thumb">🍉</div><div><strong>Melancia kawaii</strong><br><small>Fácil • 15 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Uvinha fofa','🍇','Fácil','15 min')"><div class="thumb">🍇</div><div><strong>Uvinha fofa</strong><br><small>Fácil • 15 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Banana sorridente','🍌','Fácil','12 min')"><div class="thumb">🍌</div><div><strong>Banana sorridente</strong><br><small>Fácil • 12 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Laranja kawaii','🍊','Fácil','12 min')"><div class="thumb">🍊</div><div><strong>Laranja kawaii</strong><br><small>Fácil • 12 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Limão fofo','🍋','Fácil','12 min')"><div class="thumb">🍋</div><div><strong>Limão fofo</strong><br><small>Fácil • 12 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Maçã feliz','🍎','Fácil','15 min')"><div class="thumb">🍎</div><div><strong>Maçã feliz</strong><br><small>Fácil • 15 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Pera kawaii','🍐','Fácil','15 min')"><div class="thumb">🍐</div><div><strong>Pera kawaii</strong><br><small>Fácil • 15 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Abacaxi fofo','🍍','Médio','20 min')"><div class="thumb">🍍</div><div><strong>Abacaxi fofo</strong><br><small>Médio • 20 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Cerejinhas','🍒','Fácil','15 min')"><div class="thumb">🍒</div><div><strong>Cerejinhas</strong><br><small>Fácil • 15 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Pêssego fofo','🍑','Fácil','15 min')"><div class="thumb">🍑</div><div><strong>Pêssego fofo</strong><br><small>Fácil • 15 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Kiwi kawaii','🥝','Médio','18 min')"><div class="thumb">🥝</div><div><strong>Kiwi kawaii</strong><br><small>Médio • 18 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Manga fofa','🥭','Fácil','15 min')"><div class="thumb">🥭</div><div><strong>Manga fofa</strong><br><small>Fácil • 15 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Mirtilos','🫐','Médio','18 min')"><div class="thumb">🫐</div><div><strong>Mirtilos</strong><br><small>Médio • 18 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Melon Cube','🍈','Médio','20 min')"><div class="thumb">🍈</div><div><strong>Melon Cube</strong><br><small>Médio • 20 min</small></div></a>
+  <h3 style="margin:22px 0 10px"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13c0-9 24-9 24 0 0 7-8 17-12 17S4 20 4 13Z" fill="#ff91ae"/><path d="m9 3 7 4 7-4-3 7h-8Z" fill="#8ee7cf"/><path d="M10 15v1M21 15v1M16 21v1"/></svg> Frutas</h3>
+  <a class="product" href="#tutorial" onclick="selectModel('Morango fofo','strawberry','Fácil','15 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13c0-9 24-9 24 0 0 7-8 17-12 17S4 20 4 13Z" fill="#ff91ae"/><path d="m9 3 7 4 7-4-3 7h-8Z" fill="#8ee7cf"/><path d="M10 15v1M21 15v1M16 21v1"/></svg></div><div><strong>Morango fofo</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Melancia kawaii','watermelon','Fácil','15 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9h28a14 20 0 0 1-28 0Z" fill="#8ee7cf"/><path d="M6 9h20a10 15 0 0 1-20 0Z" fill="#ff91ae"/><path d="m11 13 1 2M20 13l-1 2M16 18v2"/></svg></div><div><strong>Melancia kawaii</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Uvinha fofa','grapes','Fácil','15 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><g fill="#bda5ff"><circle cx="10" cy="11" r="5"/><circle cx="22" cy="11" r="5"/><circle cx="16" cy="19" r="5"/><circle cx="9" cy="21" r="5"/><circle cx="23" cy="21" r="5"/><circle cx="16" cy="27" r="4"/></g><path d="M16 9V3l6-1"/></svg></div><div><strong>Uvinha fofa</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Banana sorridente','banana','Fácil','12 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M24 2c7 16-3 29-18 27L2 24C16 27 23 17 21 5Z" fill="#ffd66b"/><path d="M7 25C22 25 26 12 24 5"/></svg></div><div><strong>Banana sorridente</strong><br><small>Fácil • 12 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Laranja kawaii','orange','Fácil','12 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="19" r="12" fill="#ffbe79"/><path d="M16 7V2q9-1 8 4-5 5-8 1" fill="#8ee7cf"/></svg></div><div><strong>Laranja kawaii</strong><br><small>Fácil • 12 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Limão fofo','lemon','Fácil','12 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8C15-2 29 9 28 23l-3 4C12 33 0 20 4 8Z" fill="#ffe889"/><path d="m8 11 1-1"/></svg></div><div><strong>Limão fofo</strong><br><small>Fácil • 12 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Maçã feliz','apple','Fácil','15 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10C1-1 0 25 10 29c3 1 4-2 6-2s3 3 6 2C32 25 31-1 16 10Z" fill="#ff91ae"/><path d="M16 10V2q8-1 7 4-3 4-7 1" fill="#8ee7cf"/></svg></div><div><strong>Maçã feliz</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Pera kawaii','pear','Fácil','15 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 9c0-7 10-7 10 0s9 11 7 17C25 33 7 33 4 26 2 20 11 15 11 9Z" fill="#c1e892"/><path d="M16 4V1"/></svg></div><div><strong>Pera kawaii</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Abacaxi fofo','pineapple','Médio','20 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 10-8-8 8 3 8-3Z" fill="#8ee7cf"/><rect x="6" y="9" width="20" height="22" rx="9" fill="#ffd66b"/><path d="m9 13 14 13M7 20l10 10M15 10l10 10M23 13 9 26M25 20 15 30M17 10 7 20" stroke-width="1"/></svg></div><div><strong>Abacaxi fofo</strong><br><small>Médio • 20 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Cerejinhas','cherries','Fácil','15 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="23" r="7" fill="#ff91ae"/><circle cx="24" cy="23" r="7" fill="#ff91ae"/><path d="M8 17 16 2l8 15M16 2q10-2 10 5-7 2-10-5" fill="#8ee7cf"/></svg></div><div><strong>Cerejinhas</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Pêssego fofo','peach','Fácil','15 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8C0-2-2 26 16 30 34 26 32-2 16 8Z" fill="#ffb69d"/><path d="M16 8q-5 9 0 19M16 8q1-10 10-6-2 7-10 6" fill="#8ee7cf"/></svg></div><div><strong>Pêssego fofo</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Kiwi kawaii','kiwi','Médio','18 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="16" cy="17" rx="13" ry="14" fill="#bb936a"/><ellipse cx="16" cy="17" rx="10" ry="11" fill="#b7df8a"/><ellipse cx="16" cy="17" rx="3" ry="5" fill="#fff3cb"/><path d="M10 12v1M22 12v1M9 20v1M23 20v1M13 25h1M19 25h1"/></svg></div><div><strong>Kiwi kawaii</strong><br><small>Médio • 18 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Manga fofa','mango','Fácil','15 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M25 3C8-2-1 16 6 26c7 12 26-5 23-15Z" fill="#ffd66b"/><path d="M23 3q-1 6-7 7" stroke="#ef9676"/></svg></div><div><strong>Manga fofa</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Mirtilos','blueberries','Médio','18 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><g fill="#a2a7ee"><circle cx="10" cy="20" r="8"/><circle cx="22" cy="20" r="8"/><circle cx="16" cy="9" r="8"/></g><path d="m13 7 3 3 3-3M7 18l3 3 3-3M19 18l3 3 3-3"/></svg></div><div><strong>Mirtilos</strong><br><small>Médio • 18 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Melon Cube','melon','Médio','20 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="18" r="12" fill="#c1e892"/><path d="M16 6V2h5M9 8q-7 10 0 20M16 6v24M23 8q7 10 0 20M5 14h22M5 22h22" stroke="#79a97d"/></svg></div><div><strong>Melon Cube</strong><br><small>Médio • 20 min</small></div></a>
 
-  <h3 style="margin:24px 0 10px">🍔 Comidas e fofinhos</h3>
-  <a class="product" href="#tutorial" onclick="selectModel('Hambúrguer','🍔','Médio','25 min')"><div class="thumb">🍔</div><div><strong>Hambúrguer</strong><br><small>Médio • 25 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Butter','🧈','Fácil','12 min')"><div class="thumb">🧈</div><div><strong>Butter</strong><br><small>Fácil • 12 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Dumpling','🥟','Médio','20 min')"><div class="thumb">🥟</div><div><strong>Dumpling</strong><br><small>Médio • 20 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Donut fofo','🍩','Fácil','18 min')"><div class="thumb">🍩</div><div><strong>Donut fofo</strong><br><small>Fácil • 18 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Chocolate kawaii','🍫','Fácil','15 min')"><div class="thumb">🍫</div><div><strong>Chocolate kawaii</strong><br><small>Fácil • 15 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Caixinha de leite','🥛','Médio','20 min')"><div class="thumb">🥛</div><div><strong>Caixinha de leite</strong><br><small>Médio • 20 min</small></div></a>
-  <a class="product" href="#tutorial" onclick="selectModel('Nuvem kawaii','☁️','Fácil','10 min')"><div class="thumb">☁️</div><div><strong>Nuvem kawaii</strong><br><small>Fácil • 10 min</small></div></a>
-  <a class="product" href="#printables" style="text-decoration:none;color:inherit"><div class="thumb">🖨️</div><div><strong>Prefiro imprimir</strong><br><small>Use um molde pronto, sem desenhar</small></div></a>
+  <h3 style="margin:24px 0 10px"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13a13 11 0 0 1 26 0Z" fill="#ffd090"/><path d="M3 24h26q0 7-6 7H9q-6 0-6-7Z" fill="#ffd090"/><path d="M3 17h26" stroke="#8ee7cf" stroke-width="4"/><path d="M3 22h26" stroke="#ac7c70" stroke-width="4"/></svg> Comidas e fofinhos</h3>
+  <a class="product" href="#tutorial" onclick="selectModel('Hambúrguer','burger','Médio','25 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13a13 11 0 0 1 26 0Z" fill="#ffd090"/><path d="M3 24h26q0 7-6 7H9q-6 0-6-7Z" fill="#ffd090"/><path d="M3 17h26" stroke="#8ee7cf" stroke-width="4"/><path d="M3 22h26" stroke="#ac7c70" stroke-width="4"/></svg></div><div><strong>Hambúrguer</strong><br><small>Médio • 25 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Butter','butter','Fácil','12 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 24h28l-4 6H6Z" fill="#e3dcff"/><path d="M7 24V11l7-7h12v20Z" fill="#ffe889"/><path d="M7 11h13v13M20 11l6-7"/></svg></div><div><strong>Butter</strong><br><small>Fácil • 12 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Dumpling','dumpling','Médio','20 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15C7-2 25-2 30 15c0 18-28 18-28 0Z" fill="#fff0ca"/><path d="m6 9 5 5M12 5l3 7M20 5l-2 7M26 9l-5 5"/></svg></div><div><strong>Dumpling</strong><br><small>Médio • 20 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Donut fofo','donut','Fácil','18 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="14" fill="#ffd090"/><path d="M5 14C4 0 29 0 27 15l-4 5-4-2-5 3-4-4Z" fill="#ffafd2"/><circle cx="16" cy="14" r="4" fill="#fff9fc"/><path d="m9 10 1 1M21 8l1 1M24 13v1"/></svg></div><div><strong>Donut fofo</strong><br><small>Fácil • 18 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Chocolate kawaii','chocolate','Fácil','15 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="22" height="28" rx="3" fill="#bb8c7f"/><path d="M16 3v27M6 11h20M6 21h20"/><path d="m4 20 12 4 12-4v10H4Z" fill="#ffafd2"/></svg></div><div><strong>Chocolate kawaii</strong><br><small>Fácil • 15 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Caixinha de leite','milk','Médio','20 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 2-4 7v21h24V9l-5-7Z" fill="#e3dcff"/><path d="M4 9h18v21M22 9l1-7"/><path d="M8 16h10v7H8Z" fill="#ffafd2"/></svg></div><div><strong>Caixinha de leite</strong><br><small>Médio • 20 min</small></div></a>
+  <a class="product" href="#tutorial" onclick="selectModel('Nuvem kawaii','cloud','Fácil','10 min')"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 26a7 7 0 0 1-1-14 9 9 0 0 1 17-2 8 8 0 0 1 0 16Z" fill="#d9edff"/></svg></div><div><strong>Nuvem kawaii</strong><br><small>Fácil • 10 min</small></div></a>
+  <a class="product" href="#printables" style="text-decoration:none;color:inherit"><div class="thumb"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12V3h14v9" fill="#e3dcff"/><rect x="3" y="11" width="26" height="15" rx="4" fill="#bda5ff"/><path d="M8 20h16v10H8Z" fill="white"/><path d="M23 16h1M12 24h8"/></svg></div><div><strong>Prefiro imprimir</strong><br><small>Use um molde pronto, sem desenhar</small></div></a>
 </section>
 
 <section id="tutorial" class="screen">
   <a class="back" href="#create">← Modelos</a>
-  <h2 id="tutorialTitle">Morango fofo 🍓</h2>
+  <h2 id="tutorialTitle">Morango fofo <svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13c0-9 24-9 24 0 0 7-8 17-12 17S4 20 4 13Z" fill="#ff91ae"/><path d="m9 3 7 4 7-4-3 7h-8Z" fill="#8ee7cf"/><path d="M10 15v1M21 15v1M16 21v1"/></svg></h2>
   <span class="pill" id="tutorialMeta">Fácil • 15 min</span>
   <div class="step"><strong>Você vai precisar</strong><p>Papel, fita transparente, tesoura, canetinhas e enchimento macio.</p><a class="btn soft" href="#shop">Preciso dos materiais</a></div>
   <div class="step"><strong>1. Desenhe</strong><p id="tutorialDraw">Faça duas formas iguais do modelo escolhido no papel.</p></div>
@@ -309,45 +320,45 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
   <a class="back" href="#home">← Voltar</a>
   <h2 data-i18n="materialsShop">Materiais e Loja</h2>
   <p class="subtitle">Use os pontos que ganhou no jogo para desbloquear materiais virtuais.</p>
-<div class="shop-wallet"><span>⭐ Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
-  <a class="product shop-category" href="#shop-paper"><span class="thumb" aria-hidden="true">📄</span><span class="product-copy"><strong>Papel</strong><small>Escolha os papéis da sua coleção.</small><span class="shop-action">Ver itens →</span></span></a>
-  <a class="product shop-category" href="#shop-filling"><span class="thumb" aria-hidden="true">🧻</span><span class="product-copy"><strong>Enchimento</strong><small>Colecione enchimentos fofinhos.</small><span class="shop-action">Ver itens →</span></span></a>
-  <a class="product shop-category" href="#shop-markers"><span class="thumb" aria-hidden="true">🎨</span><span class="product-copy"><strong>Canetinhas</strong><small>Desbloqueie conjuntos de cores.</small><span class="shop-action">Ver itens →</span></span></a>
-  <a class="btn soft" href="#challenges">🏆 Ganhar mais pontos</a>
-  <a class="btn soft" href="#profile">🎒 Meus materiais</a>
+<div class="shop-wallet"><span><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
+  <a class="product shop-category" href="#shop-paper"><span class="thumb" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h12l7 7v21H7Z" fill="#e3dcff"/><path d="M19 2v8h7M11 16h11M11 21h11M11 26h7"/></svg></span><span class="product-copy"><strong>Papel</strong><small>Escolha os papéis da sua coleção.</small><span class="shop-action">Ver itens →</span></span></a>
+  <a class="product shop-category" href="#shop-filling"><span class="thumb" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 25C0 23 2 14 8 13 5 5 16 2 20 8c8-3 13 6 7 11 5 8-8 12-12 7-3 3-6 2-7-1Z" fill="#e4f8ef"/></svg></span><span class="product-copy"><strong>Enchimento</strong><small>Colecione enchimentos fofinhos.</small><span class="shop-action">Ver itens →</span></span></a>
+  <a class="product shop-category" href="#shop-markers"><span class="thumb" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 11 4-7 4 7v18H6Z" fill="#ffafd2"/><path d="m18 11 4-7 4 7v18h-8Z" fill="#bda5ff"/><path d="M6 12h8M18 12h8M6 24h8M18 24h8"/></svg></span><span class="product-copy"><strong>Canetinhas</strong><small>Desbloqueie conjuntos de cores.</small><span class="shop-action">Ver itens →</span></span></a>
+  <a class="btn soft" href="#challenges"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h14v10a7 7 0 0 1-14 0Z" fill="#ffd66b"/><path d="M9 7H4v5q0 6 7 6M23 7h5v5q0 6-7 6M16 21v6M10 28h12"/></svg> Ganhar mais pontos</a>
+  <a class="btn soft" href="#profile"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="22" height="22" rx="6" fill="#bda5ff"/><path d="M11 8V5a5 3 0 0 1 10 0v3"/><rect x="9" y="18" width="14" height="8" rx="2" fill="#ffafd2"/><path d="M10 13h12"/></svg> Meus materiais</a>
 </section>
 
 <section id="shop-paper" class="screen">
   <a class="back" href="#shop">← Materiais e Loja</a>
   <h2>Papel</h2>
   <p class="subtitle">Escolha os papéis da sua coleção. Cada compra desbloqueia um item virtual para o seu perfil.</p>
-<div class="shop-wallet"><span>⭐ Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
+<div class="shop-wallet"><span><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
   <p class="shop-feedback" role="status" aria-live="polite"></p>
-  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">📄</span><h3>Papel branco</h3></div><p>O básico para começar sua coleção.</p><strong class="pill">⭐ 10 pontos</strong><button class="btn pink" data-buy-item="paper-white" onclick="buyMaterial('paper-white')">Comprar por 10 pontos</button></article>
-  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">📄</span><h3>Papel colorido</h3></div><p>Um toque de cor para seu mundo Squish.</p><strong class="pill">⭐ 20 pontos</strong><button class="btn pink" data-buy-item="paper-colors" onclick="buyMaterial('paper-colors')">Comprar por 20 pontos</button></article>
-  <a class="btn soft" href="#challenges">🏆 Ganhar mais pontos</a>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h12l7 7v21H7Z" fill="#e3dcff"/><path d="M19 2v8h7M11 16h11M11 21h11M11 26h7"/></svg></span><h3>Papel branco</h3></div><p>O básico para começar sua coleção.</p><strong class="pill"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> 10 pontos</strong><button class="btn pink" data-buy-item="paper-white" onclick="buyMaterial('paper-white')">Comprar por 10 pontos</button></article>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h12l7 7v21H7Z" fill="#e3dcff"/><path d="M19 2v8h7M11 16h11M11 21h11M11 26h7"/></svg></span><h3>Papel colorido</h3></div><p>Um toque de cor para seu mundo Squish.</p><strong class="pill"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> 20 pontos</strong><button class="btn pink" data-buy-item="paper-colors" onclick="buyMaterial('paper-colors')">Comprar por 20 pontos</button></article>
+  <a class="btn soft" href="#challenges"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h14v10a7 7 0 0 1-14 0Z" fill="#ffd66b"/><path d="M9 7H4v5q0 6 7 6M23 7h5v5q0 6-7 6M16 21v6M10 28h12"/></svg> Ganhar mais pontos</a>
 </section>
 
 <section id="shop-filling" class="screen">
   <a class="back" href="#shop">← Materiais e Loja</a>
   <h2>Enchimento</h2>
   <p class="subtitle">Colecione enchimentos fofinhos. Cada compra desbloqueia um item virtual para o seu perfil.</p>
-<div class="shop-wallet"><span>⭐ Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
+<div class="shop-wallet"><span><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
   <p class="shop-feedback" role="status" aria-live="polite"></p>
-  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">🧻</span><h3>Enchimento macio</h3></div><p>Fofura para sua coleção de materiais.</p><strong class="pill">⭐ 15 pontos</strong><button class="btn pink" data-buy-item="filling-soft" onclick="buyMaterial('filling-soft')">Comprar por 15 pontos</button></article>
-  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">🧻</span><h3>Enchimento nuvem</h3></div><p>Uma nuvem de maciez para seu mundo Squish.</p><strong class="pill">⭐ 25 pontos</strong><button class="btn pink" data-buy-item="filling-cloud" onclick="buyMaterial('filling-cloud')">Comprar por 25 pontos</button></article>
-  <a class="btn soft" href="#challenges">🏆 Ganhar mais pontos</a>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 25C0 23 2 14 8 13 5 5 16 2 20 8c8-3 13 6 7 11 5 8-8 12-12 7-3 3-6 2-7-1Z" fill="#e4f8ef"/></svg></span><h3>Enchimento macio</h3></div><p>Fofura para sua coleção de materiais.</p><strong class="pill"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> 15 pontos</strong><button class="btn pink" data-buy-item="filling-soft" onclick="buyMaterial('filling-soft')">Comprar por 15 pontos</button></article>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 25C0 23 2 14 8 13 5 5 16 2 20 8c8-3 13 6 7 11 5 8-8 12-12 7-3 3-6 2-7-1Z" fill="#e4f8ef"/></svg></span><h3>Enchimento nuvem</h3></div><p>Uma nuvem de maciez para seu mundo Squish.</p><strong class="pill"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> 25 pontos</strong><button class="btn pink" data-buy-item="filling-cloud" onclick="buyMaterial('filling-cloud')">Comprar por 25 pontos</button></article>
+  <a class="btn soft" href="#challenges"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h14v10a7 7 0 0 1-14 0Z" fill="#ffd66b"/><path d="M9 7H4v5q0 6 7 6M23 7h5v5q0 6-7 6M16 21v6M10 28h12"/></svg> Ganhar mais pontos</a>
 </section>
 
 <section id="shop-markers" class="screen">
   <a class="back" href="#shop">← Materiais e Loja</a>
   <h2>Canetinhas</h2>
   <p class="subtitle">Desbloqueie conjuntos de cores. Cada compra desbloqueia um item virtual para o seu perfil.</p>
-<div class="shop-wallet"><span>⭐ Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
+<div class="shop-wallet"><span><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
   <p class="shop-feedback" role="status" aria-live="polite"></p>
-  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">🎨</span><h3>Canetinhas de 12 cores</h3></div><p>As primeiras cores da sua coleção.</p><strong class="pill">⭐ 30 pontos</strong><button class="btn pink" data-buy-item="markers-basic" onclick="buyMaterial('markers-basic')">Comprar por 30 pontos</button></article>
-  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true">🎨</span><h3>Canetinhas arco-íris</h3></div><p>Um conjunto especial para colecionar.</p><strong class="pill">⭐ 50 pontos</strong><button class="btn pink" data-buy-item="markers-rainbow" onclick="buyMaterial('markers-rainbow')">Comprar por 50 pontos</button></article>
-  <a class="btn soft" href="#challenges">🏆 Ganhar mais pontos</a>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 11 4-7 4 7v18H6Z" fill="#ffafd2"/><path d="m18 11 4-7 4 7v18h-8Z" fill="#bda5ff"/><path d="M6 12h8M18 12h8M6 24h8M18 24h8"/></svg></span><h3>Canetinhas de 12 cores</h3></div><p>As primeiras cores da sua coleção.</p><strong class="pill"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> 30 pontos</strong><button class="btn pink" data-buy-item="markers-basic" onclick="buyMaterial('markers-basic')">Comprar por 30 pontos</button></article>
+  <article class="shop-item"><div class="shop-item-heading"><span class="thumb" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 11 4-7 4 7v18H6Z" fill="#ffafd2"/><path d="m18 11 4-7 4 7v18h-8Z" fill="#bda5ff"/><path d="M6 12h8M18 12h8M6 24h8M18 24h8"/></svg></span><h3>Canetinhas arco-íris</h3></div><p>Um conjunto especial para colecionar.</p><strong class="pill"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> 50 pontos</strong><button class="btn pink" data-buy-item="markers-rainbow" onclick="buyMaterial('markers-rainbow')">Comprar por 50 pontos</button></article>
+  <a class="btn soft" href="#challenges"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h14v10a7 7 0 0 1-14 0Z" fill="#ffd66b"/><path d="M9 7H4v5q0 6 7 6M23 7h5v5q0 6-7 6M16 21v6M10 28h12"/></svg> Ganhar mais pontos</a>
 </section>
 
 <section id="explore" class="screen">
@@ -355,10 +366,10 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
   <h2 data-i18n="explore">Explorar</h2>
   <p class="subtitle">Ideias para o seu próximo Squish.</p>
   <div class="grid">
-    <div class="card"><span class="icon">🍩</span><strong>Comidas</strong><small>Donuts, frutas, doces e mais.</small></div>
-    <div class="card"><span class="icon">🐼</span><strong>Animais</strong><small>Panda, gato, coelho e outros.</small></div>
-    <div class="card"><span class="icon">🌈</span><strong>Kawaii</strong><small>Nuvens, estrelas e arco-íris.</small></div>
-    <div class="card"><span class="icon">🎁</span><strong>Surpresa</strong><small>Deixe o app escolher por você.</small></div>
+    <div class="card"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="14" fill="#ffd090"/><path d="M5 14C4 0 29 0 27 15l-4 5-4-2-5 3-4-4Z" fill="#ffafd2"/><circle cx="16" cy="14" r="4" fill="#fff9fc"/><path d="m9 10 1 1M21 8l1 1M24 13v1"/></svg></span><strong>Comidas</strong><small>Donuts, frutas, doces e mais.</small></div>
+    <div class="card"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="5" fill="#746b83"/><circle cx="25" cy="7" r="5" fill="#746b83"/><circle cx="16" cy="18" r="13" fill="white"/><ellipse cx="10" cy="17" rx="4" ry="5" fill="#746b83"/><ellipse cx="22" cy="17" rx="4" ry="5" fill="#746b83"/><path d="m14 24 2 2 2-2"/></svg></span><strong>Animais</strong><small>Panda, gato, coelho e outros.</small></div>
+    <div class="card"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 27v-9a13 13 0 0 1 26 0v9" stroke="#ff91be" stroke-width="5"/><path d="M8 27v-9a8 8 0 0 1 16 0v9" stroke="#ffd66b" stroke-width="5"/><path d="M13 27v-9a3 3 0 0 1 6 0v9" stroke="#9b7bff" stroke-width="5"/></svg></span><strong>Kawaii</strong><small>Nuvens, estrelas e arco-íris.</small></div>
+    <div class="card"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="13" width="24" height="17" rx="2" fill="#e3dcff"/><path d="M2 9h28v7H2Z" fill="#ffafd2"/><path d="M16 9v21M16 9C0 9 6-3 16 9c10-12 16 0 0 0Z"/></svg></span><strong>Surpresa</strong><small>Deixe o app escolher por você.</small></div>
   </div>
 </section>
 
@@ -803,7 +814,7 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
     <div class="legend"><span class="fold-demo"></span><strong>Dobrar</strong><br><small>Linha tracejada</small></div>
   </div>
   <div class="print-sheet-wrap"><div id="printSheet"></div></div>
-  <a class="btn pink" href="javascript:window.print()">🖨️ Imprimir este molde</a>
+  <a class="btn pink" href="javascript:window.print()"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12V3h14v9" fill="#e3dcff"/><rect x="3" y="11" width="26" height="15" rx="4" fill="#bda5ff"/><path d="M8 20h16v10H8Z" fill="white"/><path d="M23 16h1M12 24h8"/></svg> Imprimir este molde</a>
   <a class="btn soft" href="#printables">Escolher outro molde</a>
 </section>
 
@@ -811,7 +822,7 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 
 <section id="plus" class="screen">
   <a class="back" href="#home">← Voltar</a>
-  <span class="plus-badge">👑 SQUISH FUNNY PLUS</span>
+  <span class="plus-badge"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 7 6 6-10 6 10 7-6-3 19H6Z" fill="#ffd66b"/><path d="M7 22h18"/></svg> SQUISH FUNNY PLUS</span>
   <h2 style="margin-bottom:6px">Crie o seu próprio Squish</h2>
   <p class="subtitle">Escolha cada parte, veja o resultado na hora e gere um molde exclusivo para imprimir.</p>
 
@@ -828,11 +839,11 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
     <div class="plus-panel">
       <div class="builder-label">1. Formato</div>
       <div class="option-row" id="shapeOptions">
-        <button class="opt selected" data-shape="butter" onclick="setCustom('shape','butter',this)" title="Butter">🧈</button>
-        <button class="opt" data-shape="heart" onclick="setCustom('shape','heart',this)" title="Coração">💗</button>
-        <button class="opt" data-shape="cloud" onclick="setCustom('shape','cloud',this)" title="Nuvem">☁️</button>
-        <button class="opt" data-shape="round" onclick="setCustom('shape','round',this)" title="Redondo">🟣</button>
-        <button class="opt" data-shape="star" onclick="setCustom('shape','star',this)" title="Estrela">⭐</button>
+        <button class="opt selected" data-shape="butter" onclick="setCustom('shape','butter',this)" title="Butter"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 24h28l-4 6H6Z" fill="#e3dcff"/><path d="M7 24V11l7-7h12v20Z" fill="#ffe889"/><path d="M7 11h13v13M20 11l6-7"/></svg></button>
+        <button class="opt" data-shape="heart" onclick="setCustom('shape','heart',this)" title="Coração"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 28 4 16C-3 5 10-1 16 8 22-1 35 5 28 16Z" fill="#ffafd2"/></svg></button>
+        <button class="opt" data-shape="cloud" onclick="setCustom('shape','cloud',this)" title="Nuvem"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 26a7 7 0 0 1-1-14 9 9 0 0 1 17-2 8 8 0 0 1 0 16Z" fill="#d9edff"/></svg></button>
+        <button class="opt" data-shape="round" onclick="setCustom('shape','round',this)" title="Redondo"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12" fill="#bda5ff"/></svg></button>
+        <button class="opt" data-shape="star" onclick="setCustom('shape','star',this)" title="Estrela"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg></button>
       </div>
 
       <div class="builder-label">2. Cor</div>
@@ -849,7 +860,7 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
       <div class="option-row" id="eyeOptions">
         <button class="opt selected" onclick="setCustom('eyes','●|●',this)">●●</button>
         <button class="opt" onclick="setCustom('eyes','^|^',this)">^^</button>
-        <button class="opt" onclick="setCustom('eyes','♥|♥',this)">♥♥</button>
+        <button class="opt" onclick="setCustom('eyes','♡|♡',this)">♡♡</button>
         <button class="opt" onclick="setCustom('eyes','✦|✦',this)">✦✦</button>
         <button class="opt" onclick="setCustom('eyes','•|◡',this)">•◡</button>
       </div>
@@ -865,16 +876,16 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 
       <div class="builder-label">5. Detalhe</div>
       <div class="option-row" id="detailOptions">
-        <button class="opt selected" onclick="setCustom('detail','',this)">×</button>
-        <button class="opt" onclick="setCustom('detail','🎀',this)">🎀</button>
-        <button class="opt" onclick="setCustom('detail','🌸',this)">🌸</button>
-        <button class="opt" onclick="setCustom('detail','✨',this)">✨</button>
-        <button class="opt" onclick="setCustom('detail','🍓',this)">🍓</button>
+        <button class="opt selected" aria-label="Sem detalhe" onclick="setCustom('detail','',this)">×</button>
+        <button class="opt" aria-label="Laço" onclick="setCustom('detail','bow',this)"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 13C0-2 0 31 14 19h4C32 31 32-2 18 13Z" fill="#ffafd2"/><rect x="13" y="12" width="6" height="9" rx="2" fill="#bda5ff"/></svg></button>
+        <button class="opt" aria-label="Flor" onclick="setCustom('detail','flower',this)"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 10C4 0 22-3 21 9c13-3 13 13 2 12 3 13-14 13-13 2C-3 24-3 9 11 10Z" fill="#ffafd2"/><circle cx="16" cy="16" r="4" fill="#ffd66b"/></svg></button>
+        <button class="opt" aria-label="Brilhos" onclick="setCustom('detail','sparkles',this)"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 3 9 9 4-9 3-3 10-3-10-9-3 9-4Z" fill="#ffd66b"/><path d="m26 2 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" fill="#bda5ff" stroke="none"/></svg></button>
+        <button class="opt" aria-label="Morango" onclick="setCustom('detail','strawberry',this)"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13c0-9 24-9 24 0 0 7-8 17-12 17S4 20 4 13Z" fill="#ff91ae"/><path d="m9 3 7 4 7-4-3 7h-8Z" fill="#8ee7cf"/><path d="M10 15v1M21 15v1M16 21v1"/></svg></button>
       </div>
     </div>
 
-    <button class="btn pink" onclick="openCustomPrintable()">🖨️ Gerar meu molde para imprimir</button>
-    <button class="btn soft" onclick="randomCustom()" style="margin-top:9px">🎲 Me surpreenda</button>
+    <button class="btn pink" onclick="openCustomPrintable()"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12V3h14v9" fill="#e3dcff"/><rect x="3" y="11" width="26" height="15" rx="4" fill="#bda5ff"/><path d="M8 20h16v10H8Z" fill="white"/><path d="M23 16h1M12 24h8"/></svg> Gerar meu molde para imprimir</button>
+    <button class="btn soft" onclick="randomCustom()" style="margin-top:9px"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="26" height="26" rx="6" fill="#e3dcff"/><g fill="#7652b7" stroke="none"><circle cx="10" cy="10" r="2"/><circle cx="22" cy="10" r="2"/><circle cx="16" cy="16" r="2"/><circle cx="10" cy="22" r="2"/><circle cx="22" cy="22" r="2"/></g></svg> Me surpreenda</button>
   </div>
 </section>
 
@@ -888,7 +899,7 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 
 <section id="profile" class="screen">
   <h2 data-i18n="mySquishWorld">Meu Mundo Squish</h2>
-<div class="shop-wallet"><span>⭐ Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
+<div class="shop-wallet"><span><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
   <p class="subtitle">Seu progresso fica aqui.</p>
   <div class="step">
     <strong id="levelText">Iniciante • 0 pontos</strong>
@@ -896,21 +907,22 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
     <small>Seu nível considera todos os pontos ganhos, inclusive os usados na loja.</small>
   </div>
   <div class="grid">
-    <div class="card"><span class="icon">✅</span><strong id="madeCount">0 feitos</strong><small>Squishes concluídos</small></div>
-    <div class="card"><span class="icon">🏅</span><strong id="achievementCount">0 conquistas</strong><small>Continue criando</small></div>
+    <div class="card"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="26" height="26" rx="8" fill="#8ee7cf"/><path d="m9 16 5 5 10-11"/></svg></span><strong id="madeCount">0 feitos</strong><small>Squishes concluídos</small></div>
+    <div class="card"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m7 2 9 14L25 2h-7l-2 5-2-5Z" fill="#bda5ff"/><circle cx="16" cy="22" r="9" fill="#ffd66b"/><path d="m16 16 2 4 4 1-3 3v4l-3-2-3 2v-4l-3-3 4-1Z" stroke="none" fill="#e8a43d"/></svg></span><strong id="achievementCount">0 conquistas</strong><small>Continue criando</small></div>
   </div>
-  <div class="step"><h3>🎒 Meus materiais</h3><div id="materialInventory"></div><a class="btn soft" href="#shop">Visitar a loja</a></div>
+  <div class="step"><h3><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="22" height="22" rx="6" fill="#bda5ff"/><path d="M11 8V5a5 3 0 0 1 10 0v3"/><rect x="9" y="18" width="14" height="8" rx="2" fill="#ffafd2"/><path d="M10 13h12"/></svg> Meus materiais</h3><div id="materialInventory"></div><a class="btn soft" href="#shop">Visitar a loja</a></div>
 </section>
 
 <nav id="bottomNav" class="bottom">
-  <a class="nav" href="#home"><b>🏠</b><span data-i18n="home">Início</span></a>
-  <a class="nav" href="#create"><b>✂️</b><span data-i18n="create">Criar</span></a>
-  <a class="nav" href="#challenges"><b>🏆</b><span data-i18n="challenges">Desafios</span></a>
-  <a class="nav" href="#shop"><b>🛍️</b><span data-i18n="shop">Loja</span></a>
-  <a class="nav" href="#profile"><b>👤</b><span data-i18n="profile">Perfil</span></a>
+  <a class="nav" href="#home"><b><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 15 13-12 13 12M7 12v17h18V12" fill="#e3dcff"/><path d="M13 29V19h6v10" fill="#ffafd2"/></svg></b><span data-i18n="home">Início</span></a>
+  <a class="nav" href="#create"><b><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="23" r="5" fill="#ffafd2"/><circle cx="24" cy="23" r="5" fill="#dcd2ff"/><path d="m11 19 13-15M21 19 8 4"/></svg></b><span data-i18n="create">Criar</span></a>
+  <a class="nav" href="#challenges"><b><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h14v10a7 7 0 0 1-14 0Z" fill="#ffd66b"/><path d="M9 7H4v5q0 6 7 6M23 7h5v5q0 6-7 6M16 21v6M10 28h12"/></svg></b><span data-i18n="challenges">Desafios</span></a>
+  <a class="nav" href="#shop"><b><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="22" height="20" rx="4" fill="#ffafd2"/><path d="M11 11V7a5 5 0 0 1 10 0v4"/></svg></b><span data-i18n="shop">Loja</span></a>
+  <a class="nav" href="#profile"><b><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="10" r="6" fill="#bda5ff"/><path d="M4 29a12 11 0 0 1 24 0Z" fill="#e3dcff"/></svg></b><span data-i18n="profile">Perfil</span></a>
 </nav>
 </div>
 
+<script src="./ui-icons.js"></script>
 <script>
 const translations = {
   pt:{chooseLang:'Escolha seu idioma para começar.',whatToday:'O que você quer fazer hoje?',createChallengeExplore:'Crie, cumpra desafios e descubra novos Squishes.',createSquish:'Criar um Squish',challenges:'Desafios',materials:'Materiais',explore:'Explorar',createYourSquish:'Crie seu Squish',materialsShop:'Materiais e Loja',mySquishWorld:'Meu Mundo Squish',home:'Início',create:'Criar',shop:'Loja',profile:'Perfil'},
@@ -924,12 +936,12 @@ let points=saved.points||0, made=saved.made||0, achievements=saved.achievements|
 let earnedPoints=Math.max(saved.earnedPoints||0,points);
 let inventory=saved.inventory&&typeof saved.inventory==='object'&&!Array.isArray(saved.inventory)?saved.inventory:{};
 const materialCatalog={
-  'paper-white':{name:'Papel branco',icon:'📄',price:10},
-  'paper-colors':{name:'Papel colorido',icon:'📄',price:20},
-  'filling-soft':{name:'Enchimento macio',icon:'🧻',price:15},
-  'filling-cloud':{name:'Enchimento nuvem',icon:'🧻',price:25},
-  'markers-basic':{name:'Canetinhas de 12 cores',icon:'🎨',price:30},
-  'markers-rainbow':{name:'Canetinhas arco-íris',icon:'🎨',price:50}
+  'paper-white':{name:'Papel branco',icon:'paper',price:10},
+  'paper-colors':{name:'Papel colorido',icon:'paper',price:20},
+  'filling-soft':{name:'Enchimento macio',icon:'filling',price:15},
+  'filling-cloud':{name:'Enchimento nuvem',icon:'filling',price:25},
+  'markers-basic':{name:'Canetinhas de 12 cores',icon:'markers',price:30},
+  'markers-rainbow':{name:'Canetinhas arco-íris',icon:'markers',price:50}
 };
 
 function updateShop(){
@@ -944,7 +956,7 @@ function updateShop(){
   const owned=Object.keys(materialCatalog).filter(id=>inventory[id]===true);
   if(!owned.length){container.textContent='Você ainda não tem materiais. Ganhe pontos nos desafios e escolha seus primeiros itens na loja.';return;}
   const list=document.createElement('ul');list.className='inventory-list';
-  owned.forEach(id=>{const li=document.createElement('li');li.textContent=materialCatalog[id].icon+' '+materialCatalog[id].name;list.append(li);});
+  owned.forEach(id=>{const li=document.createElement('li');li.innerHTML=iconSVG(materialCatalog[id].icon);li.append(document.createTextNode(' '+materialCatalog[id].name));list.append(li);});
   container.append(list);
 }
 function buyMaterial(id){
@@ -995,23 +1007,23 @@ window.addEventListener('hashchange',syncScreen);
 syncScreen();
 function nav(el,id){ show(id); }
 function selectModel(name,emoji,difficulty,time){
-  document.getElementById('tutorialTitle').textContent=name+' '+emoji;
+  const title=document.getElementById('tutorialTitle');title.textContent=name+' ';title.insertAdjacentHTML('beforeend',iconSVG(emoji));
   document.getElementById('tutorialMeta').textContent=difficulty+' • '+time;
   document.getElementById('tutorialDraw').textContent='Faça duas formas iguais de “'+name+'” no papel.';
 }
 function addPoints(n){
   points+=n; earnedPoints+=n; achievements+=1; updateProfile(); saveState();
-  alert(language==='en' ? 'Challenge completed! +'+n+' points 🎉' :
-        language==='es' ? '¡Desafío completado! +'+n+' puntos 🎉' :
-        language==='zh' ? '挑战完成！+'+n+' 分 🎉' :
-        'Desafio concluído! Você ganhou '+n+' pontos 🎉');
+  alert(language==='en' ? 'Challenge completed! +'+n+' points' :
+        language==='es' ? '¡Desafío completado! +'+n+' puntos' :
+        language==='zh' ? '挑战完成！+'+n+' 分' :
+        'Desafio concluído! Você ganhou '+n+' pontos');
 }
 function completeSquish(){
   points+=25; earnedPoints+=25; made+=1; achievements+=1; updateProfile(); saveState();
-  alert(language==='en' ? 'You did it! +25 points 🎉' :
-        language==='es' ? '¡Lo lograste! +25 puntos 🎉' :
-        language==='zh' ? '完成啦！+25 分 🎉' :
-        'Você conseguiu! +25 pontos 🎉');
+  alert(language==='en' ? 'You did it! +25 points' :
+        language==='es' ? '¡Lo lograste! +25 puntos' :
+        language==='zh' ? '完成啦！+25 分' :
+        'Você conseguiu! +25 pontos');
   show('profile');
 }
 function updateProfile(){
@@ -1136,19 +1148,19 @@ function boxNetSVG(d){
 
 function shapeSVG(d){
   const shapeMap={
-    '🍓':'M200 280 C145 205 90 278 110 390 C132 510 190 620 250 680 C310 620 368 510 390 390 C410 278 355 205 300 280 C270 240 230 240 200 280 Z',
-    '🍉':'M95 410 A155 155 0 0 0 405 410 L95 410 Z',
-    '🍎':'M112 400 C92 292 170 250 250 294 C330 250 408 292 388 400 C370 525 307 627 250 665 C193 627 130 525 112 400 Z',
-    '🍊':'M250 265 C355 265 415 345 400 455 C383 580 315 650 250 650 C185 650 117 580 100 455 C85 345 145 265 250 265 Z',
-    '🍋':'M95 450 C118 332 192 275 250 248 C308 275 382 332 405 450 C382 568 308 625 250 652 C192 625 118 568 95 450 Z',
-    '🍐':'M250 255 C302 280 322 335 320 380 C395 415 392 540 330 612 C286 665 214 665 170 612 C108 540 105 415 180 380 C178 335 198 280 250 255 Z',
-    '🥝':'M250 260 C360 260 420 340 405 455 C390 570 325 645 250 645 C175 645 110 570 95 455 C80 340 140 260 250 260 Z',
-    '🍍':'M250 315 C335 315 370 395 360 500 C350 595 305 655 250 655 C195 655 150 595 140 500 C130 395 165 315 250 315 Z',
-    '🍒':'M140 470 C95 405 140 345 205 365 C250 380 265 440 235 490 C205 540 160 535 140 470 Z M265 470 C220 405 265 345 330 365 C375 380 390 440 360 490 C330 540 285 535 265 470 Z',
-    '🍇':'M250 300 C310 305 350 350 342 405 C390 425 388 490 350 515 C360 575 300 615 250 585 C200 615 140 575 150 515 C112 490 110 425 158 405 C150 350 190 305 250 300 Z'
+    'strawberry':'M200 280 C145 205 90 278 110 390 C132 510 190 620 250 680 C310 620 368 510 390 390 C410 278 355 205 300 280 C270 240 230 240 200 280 Z',
+    'watermelon':'M95 410 A155 155 0 0 0 405 410 L95 410 Z',
+    'apple':'M112 400 C92 292 170 250 250 294 C330 250 408 292 388 400 C370 525 307 627 250 665 C193 627 130 525 112 400 Z',
+    'orange':'M250 265 C355 265 415 345 400 455 C383 580 315 650 250 650 C185 650 117 580 100 455 C85 345 145 265 250 265 Z',
+    'lemon':'M95 450 C118 332 192 275 250 248 C308 275 382 332 405 450 C382 568 308 625 250 652 C192 625 118 568 95 450 Z',
+    'pear':'M250 255 C302 280 322 335 320 380 C395 415 392 540 330 612 C286 665 214 665 170 612 C108 540 105 415 180 380 C178 335 198 280 250 255 Z',
+    'kiwi':'M250 260 C360 260 420 340 405 455 C390 570 325 645 250 645 C175 645 110 570 95 455 C80 340 140 260 250 260 Z',
+    'pineapple':'M250 315 C335 315 370 395 360 500 C350 595 305 655 250 655 C195 655 150 595 140 500 C130 395 165 315 250 315 Z',
+    'cherries':'M140 470 C95 405 140 345 205 365 C250 380 265 440 235 490 C205 540 160 535 140 470 Z M265 470 C220 405 265 345 330 365 C375 380 390 440 360 490 C330 540 285 535 265 470 Z',
+    'grapes':'M250 300 C310 305 350 350 342 405 C390 425 388 490 350 515 C360 575 300 615 250 585 C200 615 140 575 150 515 C112 490 110 425 158 405 C150 350 190 305 250 300 Z'
   };
-  const p=shapeMap[d.emoji]||shapeMap['🍓'];
-  function face(x){return `<g transform="translate(${x},0)"><path d="${p}" fill="url(#fruit)" stroke="#d84a6c" stroke-width="4"/><text x="250" y="430" text-anchor="middle" font-size="82">${d.emoji}</text><circle cx="225" cy="500" r="7" fill="#493f51"/><circle cx="275" cy="500" r="7" fill="#493f51"/><path d="M235 527 Q250 545 265 527" fill="none" stroke="#493f51" stroke-width="5"/><text x="250" y="590" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="#8c3659">${d.name.toUpperCase()}</text></g>`}
+  const p=shapeMap[d.emoji]||shapeMap['strawberry'];
+  function face(x){return `<g transform="translate(${x},0)"><path d="${p}" fill="url(#fruit)" stroke="#d84a6c" stroke-width="4"/>${printIconSVG(d.emoji,209,348,82)}<circle cx="225" cy="500" r="7" fill="#493f51"/><circle cx="275" cy="500" r="7" fill="#493f51"/><path d="M235 527 Q250 545 265 527" fill="none" stroke="#493f51" stroke-width="5"/><text x="250" y="590" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="#8c3659">${d.name.toUpperCase()}</text></g>`}
   return `<svg viewBox="0 0 1123 794" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Molde ${d.name}"><defs><linearGradient id="fruit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${d.c1}"/><stop offset="1" stop-color="${d.c2}"/></linearGradient></defs><rect width="1123" height="794" fill="#fff"/><text x="561" y="42" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#5d5366">${d.name} • FRENTE E VERSO PRONTOS</text><text x="561" y="68" text-anchor="middle" font-family="Arial" font-size="14" fill="#5d5366">Recorte as duas peças, una com fita deixando uma abertura e coloque enchimento</text>${face(20)}${face(575)}<text x="561" y="748" text-anchor="middle" font-family="Arial" font-size="14" fill="#5d5366">Linha rosa = recorte • deixe cerca de 1 cm sem fechar para colocar o enchimento</text></svg>`;
 }
 
@@ -1186,14 +1198,14 @@ function setCustom(type,value,el){
 function renderCustom(){
   const p=document.getElementById('customPreview'); if(!p) return;
   const e=customSquish.eyes.split('|');
-  p.innerHTML=`<div class="custom-shape shape-${customSquish.shape}" style="--custom:${customSquish.color}"><div class="face"><div class="eyes"><span>${e[0]}</span><span>${e[1]||e[0]}</span></div><div class="mouth">${customSquish.mouth}</div></div><div class="detail">${customSquish.detail}</div></div>`;
+  p.innerHTML=`<div class="custom-shape shape-${customSquish.shape}" style="--custom:${customSquish.color}"><div class="face"><div class="eyes"><span>${e[0]}</span><span>${e[1]||e[0]}</span></div><div class="mouth">${customSquish.mouth}</div></div><div class="detail">${iconSVG(customSquish.detail)}</div></div>`;
 }
 function randomCustom(){
   const shapes=['butter','heart','cloud','round','star'];
   const colors=['#ffd66b','#ff9fc6','#b69cff','#8ee7cf','#7cc8ff','#ffad7a'];
-  const eyes=['●|●','^|^','♥|♥','✦|✦','•|◡'];
+  const eyes=['●|●','^|^','♡|♡','✦|✦','•|◡'];
   const mouths=['◡','ᴗ','ω','○','﹏'];
-  const details=['','🎀','🌸','✨','🍓'];
+  const details=['','bow','flower','sparkles','strawberry'];
   customSquish.shape=shapes[Math.floor(Math.random()*shapes.length)];
   customSquish.color=colors[Math.floor(Math.random()*colors.length)];
   customSquish.eyes=eyes[Math.floor(Math.random()*eyes.length)];
@@ -1213,7 +1225,7 @@ function customShapePath(shape,xoff=0){
 }
 function customFaceSVG(x){
   const e=customSquish.eyes.split('|');
-  return `<path d="${customShapePath(customSquish.shape,x)}" fill="${customSquish.color}" stroke="#8e63ee" stroke-width="4"/><text x="${220+x}" y="300" text-anchor="middle" font-family="Arial" font-size="42" fill="#44394f">${e[0]}</text><text x="${280+x}" y="300" text-anchor="middle" font-family="Arial" font-size="42" fill="#44394f">${e[1]||e[0]}</text><text x="${250+x}" y="355" text-anchor="middle" font-family="Arial" font-size="43" fill="#44394f">${customSquish.mouth}</text><text x="${360+x}" y="180" text-anchor="middle" font-size="45">${customSquish.detail}</text>`;
+  return `<path d="${customShapePath(customSquish.shape,x)}" fill="${customSquish.color}" stroke="#8e63ee" stroke-width="4"/><text x="${220+x}" y="300" text-anchor="middle" font-family="Arial" font-size="42" fill="#44394f">${e[0]}</text><text x="${280+x}" y="300" text-anchor="middle" font-family="Arial" font-size="42" fill="#44394f">${e[1]||e[0]}</text><text x="${250+x}" y="355" text-anchor="middle" font-family="Arial" font-size="43" fill="#44394f">${customSquish.mouth}</text>${printIconSVG(customSquish.detail,335+x,135,50)}`;
 }
 function customPrintableSVG(){
   return `<svg viewBox="0 0 1123 794" xmlns="http://www.w3.org/2000/svg"><rect width="1123" height="794" fill="#fff"/><text x="561" y="48" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#5d5366">MEU SQUISH PLUS • FRENTE E VERSO</text><text x="561" y="76" text-anchor="middle" font-family="Arial" font-size="14" fill="#6f6575">Recorte as duas peças, una as bordas e deixe uma abertura para colocar enchimento</text>${customFaceSVG(15)}${customFaceSVG(575)}<line x1="561" y1="100" x2="561" y2="670" stroke="#eadff1" stroke-dasharray="9 8"/><text x="561" y="744" text-anchor="middle" font-family="Arial" font-size="14" fill="#6f6575">Exclusivo Squish Funny Plus • criado por você</text></svg>`;

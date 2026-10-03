@@ -1,7 +1,8 @@
-const CACHE_NAME = 'squish-funny-v3';
+const CACHE_NAME = 'squish-funny-v4';
 const ASSETS = [
   './',
   './index.html',
+  './ui-icons.js',
   './manifest.webmanifest',
   './icon-192.png',
   './icon-512.png',
