@@ -103,14 +103,7 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 .print-card strong{display:block;margin:9px 0 3px}
 .print-card small{color:var(--muted)}
 .print-btn{display:block;text-decoration:none;margin-top:9px;background:#f0eaff;color:#66519d;border-radius:14px;padding:10px;font-weight:800}
-@media print{
-  body *{visibility:hidden}
-  .screen:target, .screen:target *{visibility:visible}
-  .screen:target{position:absolute;left:0;top:0;width:100%;display:block!important}
-  .back,.bottom,.print-btn,h2,.subtitle{display:none!important}
-  .print-grid{grid-template-columns:1fr 1fr;gap:18px}
-  .print-card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
-}
+
 </style>
 
 
@@ -125,17 +118,7 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 #printSheet svg{width:100%;height:auto;display:block;background:white;border-radius:14px}
 .print-help{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.legend{background:white;border-radius:14px;padding:10px;font-size:12px;box-shadow:var(--shadow)}
 .cut-demo,.fold-demo{display:inline-block;width:26px;margin-right:7px;vertical-align:middle}.cut-demo{border-top:2px solid #d54468}.fold-demo{border-top:2px dashed #7a6f86}
-@media print{
-  @page{size:A4 portrait;margin:8mm}
-  body{background:white!important}
-  .app{max-width:none!important;width:100%!important;background:white!important;overflow:visible!important}
-  body *{visibility:hidden!important}
-  #print-detail,#print-detail *{visibility:visible!important}
-  #print-detail{display:block!important;position:absolute!important;left:0!important;top:0!important;width:100%!important;padding:0!important;min-height:auto!important}
-  #print-detail .back,#print-detail h2,#print-detail .subtitle,#print-detail .print-help,#print-detail .btn,#bottomNav{display:none!important}
-  .print-sheet-wrap{box-shadow:none!important;padding:0!important;margin:0!important;border-radius:0!important}
-  #printSheet svg{width:190mm!important;max-height:275mm!important;margin:0 auto!important;border-radius:0!important}
-}
+
 </style>
 
 
@@ -195,7 +178,7 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 .plus-lock{background:linear-gradient(135deg,#fff6d6,#f0e8ff);border:1px solid #eadcff;border-radius:24px;padding:18px;margin:14px 0}.plus-lock h3{margin:5px 0}.plus-lock p{margin:6px 0 12px;color:#6f6575;font-size:14px;line-height:1.45}
 .builder-label{font-size:12px;font-weight:900;color:#6c5f78;text-transform:uppercase;letter-spacing:.65px;margin:16px 0 7px}
 .plus-price-note{font-size:12px;color:#81768c;margin-top:8px}
-@media print{#plus,#home,#bottomNav,.back,.btn,.plus-panel:not(.print-only){display:none!important}}
+
 
 </style>
 
@@ -219,9 +202,13 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 @media (display-mode: standalone){#installCard{display:none!important}}
 </style>
 
+<link rel="stylesheet" href="./app.css">
+<link rel="stylesheet" href="./game.css">
 </head>
 <body>
 <div class="app">
+<header class="topbar"><a href="#home" class="wordmark">Squish Funny</a><label for="languageSelect" class="sr-only">Idioma</label><select id="languageSelect"><option value="pt">Português</option><option value="en">English</option><option value="es">Español</option><option value="zh">中文</option></select></header>
+<div id="toast" role="status" aria-live="polite" hidden></div>
 
 <section id="language" class="screen active">
   <div class="brand">Squish Funny</div>
@@ -247,19 +234,21 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 </section>
 
 <section id="home" class="screen">
-  <span class="pill">Nível 1 • Iniciante</span>
-  <div class="hero">
-    <div class="squish"><i class="eye left"></i><i class="eye right"></i><i class="mouth"></i></div>
-    <h2 id="homeTitle"><span data-i18n="whatToday">O que você quer fazer hoje?</span></h2>
-    <p class="subtitle" style="margin-bottom:0"><span data-i18n="createChallengeExplore">Crie, cumpra desafios e descubra novos Squishes.</span></p>
+  <span class="pill" id="homeLevel">Iniciante • 0 pontos ganhos</span>
+  <div class="game-home">
+    <h2 id="homeTitle">Seu mundo de fofura!</h2>
+    <p>Brinque, crie e descubra novos amigos Squish.</p>
+    <a class="btn pink" href="#play">Vamos brincar!</a>
+    <div class="mini-links"><a href="#collection">Minha coleção</a><a href="#plus">Montar no app</a><a href="#create">Fazer em casa</a></div>
+    <p id="homeCollectionCount" class="note">1 de 6 amigos na coleção</p>
   </div>
   <div class="grid">
     <a class="card" href="#create"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="23" r="5" fill="#ffafd2"/><circle cx="24" cy="23" r="5" fill="#dcd2ff"/><path d="m11 19 13-15M21 19 8 4"/></svg></span><strong data-i18n="createSquish">Criar um Squish</strong><small>Escolha um modelo e faça passo a passo.</small></a>
-    <a class="card" href="#challenges"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h14v10a7 7 0 0 1-14 0Z" fill="#ffd66b"/><path d="M9 7H4v5q0 6 7 6M23 7h5v5q0 6-7 6M16 21v6M10 28h12"/></svg></span><strong data-i18n="challenges">Desafios</strong><small>Ganhe pontos e desbloqueie modelos.</small></a>
-    <a class="card" href="#shop"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="22" height="20" rx="4" fill="#ffafd2"/><path d="M11 11V7a5 5 0 0 1 10 0v4"/></svg></span><strong data-i18n="materials">Materiais</strong><small>Veja o que precisa e onde encontrar.</small></a>
+    <a class="card" href="#challenges"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h14v10a7 7 0 0 1-14 0Z" fill="#ffd66b"/><path d="M9 7H4v5q0 6 7 6M23 7h5v5q0 6-7 6M16 21v6M10 28h12"/></svg></span><strong data-i18n="challenges">Desafios</strong><small>Ganhe pontos e colecione materiais virtuais.</small></a>
+    <a class="card" href="#shop"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="22" height="20" rx="4" fill="#ffafd2"/><path d="M11 11V7a5 5 0 0 1 10 0v4"/></svg></span><strong data-i18n="materials">Materiais</strong><small>Descubra os materiais para suas criações.</small></a>
     <a class="card" href="#explore"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 3 9 9 4-9 3-3 10-3-10-9-3 9-4Z" fill="#ffd66b"/><path d="m26 2 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" fill="#bda5ff" stroke="none"/></svg></span><strong data-i18n="explore">Explorar</strong><small>Descubra ideias novas para criar.</small></a>
     <a class="card" href="#printables"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12V3h14v9" fill="#e3dcff"/><rect x="3" y="11" width="26" height="15" rx="4" fill="#bda5ff"/><path d="M8 20h16v10H8Z" fill="white"/><path d="M23 16h1M12 24h8"/></svg></span><strong>Moldes para imprimir</strong><small>Escolha um desenho pronto e imprima.</small></a>
-    <a class="card plus-card" href="#plus"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 7 6 6-10 6 10 7-6-3 19H6Z" fill="#ffd66b"/><path d="M7 22h18"/></svg></span><strong>Squish Funny Plus</strong><small>Crie seu próprio squish, personalize e gere o molde para imprimir.</small><span class="plus-badge" style="margin-top:9px;width:max-content">PLUS • R$ 5,00</span></a>
+    <a class="card plus-card" href="#plus"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 7 6 6-10 6 10 7-6-3 19H6Z" fill="#ffd66b"/><path d="M7 22h18"/></svg></span><strong>Squish Funny Plus</strong><small>Crie seu próprio squish, personalize e gere o molde para imprimir.</small><span class="plus-badge" style="margin-top:9px;width:max-content">PLUS • DEMO</span></a>
   </div>
 </section>
 
@@ -300,20 +289,21 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
   <a class="back" href="#create">← Modelos</a>
   <h2 id="tutorialTitle">Morango fofo <svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13c0-9 24-9 24 0 0 7-8 17-12 17S4 20 4 13Z" fill="#ff91ae"/><path d="m9 3 7 4 7-4-3 7h-8Z" fill="#8ee7cf"/><path d="M10 15v1M21 15v1M16 21v1"/></svg></h2>
   <span class="pill" id="tutorialMeta">Fácil • 15 min</span>
-  <div class="step"><strong>Você vai precisar</strong><p>Papel, fita transparente, tesoura, canetinhas e enchimento macio.</p><a class="btn soft" href="#shop">Preciso dos materiais</a></div>
-  <div class="step"><strong>1. Desenhe</strong><p id="tutorialDraw">Faça duas formas iguais do modelo escolhido no papel.</p></div>
-  <div class="step"><strong>2. Decore</strong><p>Colora e desenhe o rostinho antes de fechar.</p></div>
-  <div class="step"><strong>3. Monte</strong><p>Una as bordas com fita, deixando uma pequena abertura.</p></div>
-  <div class="step"><strong>4. Encha</strong><p>Coloque o enchimento, feche a abertura e aperte com cuidado.</p></div>
-  <button class="btn pink" onclick="completeSquish()">Consegui fazer!</button>
+  <div class="step"><strong>Você vai precisar</strong><p>Papel, fita transparente, tesoura sem ponta, canetinhas e enchimento macio. Crianças devem pedir ajuda a um adulto para recortar.</p><a class="btn soft" href="#shop">Preciso dos materiais</a></div>
+  <div class="step"><strong>1. Desenhe</strong><p id="tutorialDraw">Desenhe duas peças do mesmo tamanho e espelhe o verso para alinhar as bordas.</p></div>
+  <div class="step"><strong>2. Decore</strong><p>Pinte e desenhe o rostinho. Cubra com fita transparente antes de recortar para proteger o papel.</p></div>
+  <div class="step"><strong>3. Monte</strong><p>Recorte as duas peças. Alinhe frente e verso e una as bordas com fita, deixando uma abertura de 2 cm.</p></div>
+  <div class="step"><strong>4. Encha</strong><p>Coloque pouco enchimento macio, sem compactar. Feche a abertura com fita e aperte devagar para não rasgar.</p></div>
+  <button id="completeSquishButton" class="btn pink" onclick="completeSquish()">Consegui fazer!</button>
+  <button id="restartTutorial" class="btn soft" onclick="restartTutorial()" hidden>Recomeçar tutorial</button>
 </section>
 
 <section id="challenges" class="screen">
   <a class="back" href="#home">← Voltar</a>
   <h2 data-i18n="challenges">Desafios</h2>
   <p class="subtitle">Complete missões para ganhar pontos.</p>
-  <div class="step"><span class="pill">+20 pontos</span><h3>Desafio do dia</h3><p>Faça um Squish inspirado em uma comida.</p><button class="btn pink" onclick="addPoints(20)">Concluir desafio</button></div>
-  <div class="step"><span class="pill">+35 pontos</span><h3>Desafio rápido</h3><p>Crie um Squish em menos de 30 minutos.</p><button class="btn soft" onclick="addPoints(35)">Marcar como concluído</button></div>
+  <div class="step"><span class="pill">+20 pontos</span><h3>Desafio do dia</h3><p>Faça um Squish inspirado em uma comida.</p><button class="btn pink" data-challenge="20" onclick="addPoints(20)">Concluir desafio</button></div>
+  <div class="step"><span class="pill">+35 pontos</span><h3>Desafio rápido</h3><p>Crie um Squish em menos de 30 minutos.</p><button class="btn soft" data-challenge="35" onclick="addPoints(35)">Marcar como concluído</button></div>
 </section>
 
 <section id="shop" class="screen">
@@ -366,10 +356,10 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
   <h2 data-i18n="explore">Explorar</h2>
   <p class="subtitle">Ideias para o seu próximo Squish.</p>
   <div class="grid">
-    <div class="card"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="14" fill="#ffd090"/><path d="M5 14C4 0 29 0 27 15l-4 5-4-2-5 3-4-4Z" fill="#ffafd2"/><circle cx="16" cy="14" r="4" fill="#fff9fc"/><path d="m9 10 1 1M21 8l1 1M24 13v1"/></svg></span><strong>Comidas</strong><small>Donuts, frutas, doces e mais.</small></div>
-    <div class="card"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="5" fill="#746b83"/><circle cx="25" cy="7" r="5" fill="#746b83"/><circle cx="16" cy="18" r="13" fill="white"/><ellipse cx="10" cy="17" rx="4" ry="5" fill="#746b83"/><ellipse cx="22" cy="17" rx="4" ry="5" fill="#746b83"/><path d="m14 24 2 2 2-2"/></svg></span><strong>Animais</strong><small>Panda, gato, coelho e outros.</small></div>
-    <div class="card"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 27v-9a13 13 0 0 1 26 0v9" stroke="#ff91be" stroke-width="5"/><path d="M8 27v-9a8 8 0 0 1 16 0v9" stroke="#ffd66b" stroke-width="5"/><path d="M13 27v-9a3 3 0 0 1 6 0v9" stroke="#9b7bff" stroke-width="5"/></svg></span><strong>Kawaii</strong><small>Nuvens, estrelas e arco-íris.</small></div>
-    <div class="card"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="13" width="24" height="17" rx="2" fill="#e3dcff"/><path d="M2 9h28v7H2Z" fill="#ffafd2"/><path d="M16 9v21M16 9C0 9 6-3 16 9c10-12 16 0 0 0Z"/></svg></span><strong>Surpresa</strong><small>Deixe o app escolher por você.</small></div>
+    <button class="card" onclick="show('create')"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="14" fill="#ffd090"/><path d="M5 14C4 0 29 0 27 15l-4 5-4-2-5 3-4-4Z" fill="#ffafd2"/><circle cx="16" cy="14" r="4" fill="#fff9fc"/><path d="m9 10 1 1M21 8l1 1M24 13v1"/></svg></span><strong>Comidas</strong><small>Donuts, frutas, doces e mais.</small></button>
+    <button class="card" onclick="selectModel('Panda','panda','Fácil','20 min');show('tutorial')"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="5" fill="#746b83"/><circle cx="25" cy="7" r="5" fill="#746b83"/><circle cx="16" cy="18" r="13" fill="white"/><ellipse cx="10" cy="17" rx="4" ry="5" fill="#746b83"/><ellipse cx="22" cy="17" rx="4" ry="5" fill="#746b83"/><path d="m14 24 2 2 2-2"/></svg></span><strong>Animais</strong><small>Comece com um panda fofinho.</small></button>
+    <button class="card" onclick="unlockPlus();setCustom('shape','cloud');show('plus')"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 27v-9a13 13 0 0 1 26 0v9" stroke="#ff91be" stroke-width="5"/><path d="M8 27v-9a8 8 0 0 1 16 0v9" stroke="#ffd66b" stroke-width="5"/><path d="M13 27v-9a3 3 0 0 1 6 0v9" stroke="#9b7bff" stroke-width="5"/></svg></span><strong>Kawaii</strong><small>Nuvens, estrelas e arco-íris.</small></button>
+    <button class="card" onclick="unlockPlus();randomCustom();show('plus')"><span class="icon"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="13" width="24" height="17" rx="2" fill="#e3dcff"/><path d="M2 9h28v7H2Z" fill="#ffafd2"/><path d="M16 9v21M16 9C0 9 6-3 16 9c10-12 16 0 0 0Z"/></svg></span><strong>Surpresa</strong><small>Deixe o app escolher por você.</small></button>
   </div>
 </section>
 
@@ -379,7 +369,7 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 <section id="printables" class="screen">
   <a class="back" href="#home">← Voltar</a>
   <h2>Moldes para imprimir</h2>
-  <p class="subtitle">Agora os moldes seguem o formato da referência que você mandou: a embalagem já aparece aberta, pronta para imprimir, recortar e dobrar.</p>
+  <p class="subtitle">20 embalagens divertidas para imprimir em A4, recortar, dobrar e preencher.</p>
   <div class="print-reference-note"><strong>Como funciona:</strong> toque em um modelo. Ele abre grande, em uma folha branca, com a arte colorida no próprio molde, linhas externas para recortar e linhas tracejadas para dobrar.</div>
   <div class="print-library reference-grid">
     
@@ -814,8 +804,9 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
     <div class="legend"><span class="fold-demo"></span><strong>Dobrar</strong><br><small>Linha tracejada</small></div>
   </div>
   <div class="print-sheet-wrap"><div id="printSheet"></div></div>
-  <a class="btn pink" href="javascript:window.print()"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12V3h14v9" fill="#e3dcff"/><rect x="3" y="11" width="26" height="15" rx="4" fill="#bda5ff"/><path d="M8 20h16v10H8Z" fill="white"/><path d="M23 16h1M12 24h8"/></svg> Imprimir este molde</a>
-  <a class="btn soft" href="#printables">Escolher outro molde</a>
+  <a class="btn pink" href="#print-detail" onclick="window.print();return false"><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12V3h14v9" fill="#e3dcff"/><rect x="3" y="11" width="26" height="15" rx="4" fill="#bda5ff"/><path d="M8 20h16v10H8Z" fill="white"/><path d="M23 16h1M12 24h8"/></svg> Imprimir este molde</a>
+  <button class="btn soft" onclick="downloadTemplate('printSheet')">Baixar molde SVG</button>
+<a class="btn soft" href="#printables">Escolher outro molde</a>
 </section>
 
 
@@ -827,13 +818,13 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
   <p class="subtitle">Escolha cada parte, veja o resultado na hora e gere um molde exclusivo para imprimir.</p>
 
   <div class="plus-lock" id="plusGate">
-    <h3>Conteúdo exclusivo Plus • R$ 5,00</h3>
-    <p>O Squish Funny Plus custa R$ 5,00 em compra única. Depois da compra, a pessoa libera o criador exclusivo para montar e imprimir o próprio Squish.</p>
-    <button class="btn pink" onclick="buyPlus()">Comprar Plus por R$ 5,00</button>
-    <div class="plus-price-note">Compra única • R$ 5,00. No app publicado, o valor das vendas será enviado para a conta de recebimento configurada pela proprietária, descontadas as taxas aplicáveis da plataforma de pagamento/loja.</div>
+    <h3>Plus de R$ 5 • demonstração gratuita</h3>
+    <p>R$ 5 é apenas o preço ilustrativo do Plus. Experimente o criador gratuitamente: esta versão não cobra nem solicita dados de pagamento.</p>
+    <button class="btn pink" onclick="buyPlus()">Experimentar Plus grátis</button>
+    <div class="plus-price-note">Demonstração sem cobrança. Nenhuma compra ou assinatura será criada.</div>
   </div>
 
-  <div id="plusBuilder" style="display:none">
+  <div id="plusBuilder" style="display:none"><p class="demo-note">Demonstração Plus gratuita • sem cobrança</p>
     <div class="creator-stage"><div id="customPreview"></div></div>
 
     <div class="plus-panel">
@@ -892,12 +883,12 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
 <section id="custom-print" class="screen">
   <a class="back" href="#plus">← Voltar ao criador</a>
   <h2>Seu Squish personalizado</h2>
-  <p class="subtitle">Frente e verso prontos. Imprima em 100%, recorte, una as bordas e deixe uma abertura para o enchimento.</p>
-  <button class="btn pink" onclick="window.print()">Imprimir agora</button>
+  <p class="subtitle">Imprima em A4 paisagem, escala 100%, sem cabeçalhos. O verso é espelhado: alinhe as partes com os desenhos para fora, prenda com fita e encha antes de fechar.</p>
+  <button class="btn pink" onclick="window.print()">Imprimir agora</button><button class="btn soft" onclick="downloadTemplate('customPrintSheet')">Baixar molde SVG</button>
   <div class="print-sheet-wrap" style="margin-top:14px"><div id="customPrintSheet"></div></div>
 </section>
 
-<section id="profile" class="screen">
+<section id="profile" class="screen"><a class="btn soft" href="#collection">Minha coleção</a><a class="back" href="#language">Idioma e instalação</a>
   <h2 data-i18n="mySquishWorld">Meu Mundo Squish</h2>
 <div class="shop-wallet"><span><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2 4 9 10 1-8 7 2 11-8-6-9 6 2-11-7-7 10-1Z" fill="#ffd66b"/></svg> Seu saldo</span><strong data-shop-balance>0 pontos</strong></div>
   <p class="subtitle">Seu progresso fica aqui.</p>
@@ -913,370 +904,60 @@ input{width:100%;padding:14px;border:1px solid #e5deec;border-radius:15px;margin
   <div class="step"><h3><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="22" height="22" rx="6" fill="#bda5ff"/><path d="M11 8V5a5 3 0 0 1 10 0v3"/><rect x="9" y="18" width="14" height="8" rx="2" fill="#ffafd2"/><path d="M10 13h12"/></svg> Meus materiais</h3><div id="materialInventory"></div><a class="btn soft" href="#shop">Visitar a loja</a></div>
 </section>
 
+
+<section id="play" class="screen">
+  <div class="play-heading"><h2>Hora de brincar!</h2><a class="back" href="#collection">Trocar amigo</a></div>
+  <p class="game-tip"><strong id="playFriendName">Mochi</strong> • <span>Brinque no seu ritmo. Cada rodada ajuda a abrir sua coleção.</span></p>
+  <div class="game-tabs" role="group" aria-label="Escolha a brincadeira"><button id="starsTab" aria-pressed="true">Caça aos brilhos</button><button id="memoryTab" aria-pressed="false">Memória fofinha</button></div>
+  <div id="starsMode">
+    <p class="game-tip">Pegue 8 brilhos! Você também pode apertar seu Squish.</p>
+    <div class="squish-board"><button id="squeezeToy" aria-label="Apertar Squish"></button><button id="sparkleTarget" aria-label="Pegar brilho"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 2 4 9 10 5-10 4-4 10-4-10L2 16l10-5Z" fill="#9b65d2" stroke="#714493" stroke-width="1.5"/></svg></button></div>
+    <div class="round-progress"><span id="sparkleCount" role="status">0 de 8 brilhos</span><progress id="sparkleProgress" max="8" value="0" aria-label="Brilhos coletados"></progress></div>
+    <div id="starsResult" class="game-result" hidden><h3>Que brilho! +20 pontos</h3><p>Seu amigo adorou brincar com você.</p><button class="btn pink" onclick="newStarRound()">Brincar outra vez</button><a class="btn soft" href="#collection">Ver meus amigos</a></div>
+  </div>
+  <div id="memoryMode" hidden>
+    <p class="game-tip">Vire duas cartas e encontre os 4 pares. Pode tentar quantas vezes quiser!</p>
+    <strong id="memoryCount" role="status">0 de 4 pares</strong><div id="memoryGrid" class="memory-grid"></div>
+    <div id="memoryResult" class="game-result" hidden><h3>Todos os pares! +30 pontos</h3><p>Uma memória cheia de fofura.</p><button class="btn pink" onclick="newMemoryRound()">Brincar outra vez</button><a class="btn soft" href="#collection">Ver meus amigos</a></div>
+  </div>
+  <p id="newFriendMessage" role="status" class="game-tip"></p>
+  <a class="btn soft" href="#friend">Montar este amigo</a>
+</section>
+<section id="collection" class="screen">
+  <a class="back" href="#home">← Voltar</a><h2>Minha coleção</h2>
+  <p class="subtitle">Ganhe pontos brincando ou criando em casa. Os amigos desbloqueados ficam com você, mesmo depois de gastar pontos na loja.</p>
+  <div class="collection-banner"><strong id="collectionCount">1 de 6 amigos na coleção</strong><span id="nextFriend"></span></div>
+  <div id="collectionGrid" class="collection-grid"></div><a class="btn pink" href="#play">Vamos brincar!</a>
+</section>
+<section id="friend" class="screen">
+  <a class="back" href="#collection">← Minha coleção</a><h2 id="friendName">Mochi</h2><p id="friendStory" class="subtitle"></p><div id="friendArt" class="friend-art"></div>
+  <a class="btn pink" href="#play">Brincar com este amigo</a><button class="btn soft" onclick="customizeFriend()">Montar no app</button><button class="btn soft" onclick="collectionPrintable()">Imprimir e montar em casa</button><button class="btn soft" onclick="makeFriendAtHome()">Ver passo a passo</button>
+</section>
+<section id="collection-print" class="screen">
+  <a class="back" href="#friend">← Meu amigo</a><h2 id="collectionPrintTitle">Mochi</h2>
+  <p class="subtitle">Imprima em A4 paisagem, escala 100%, sem cabeçalhos. O verso é espelhado: alinhe as partes com os desenhos para fora, prenda com fita e encha antes de fechar.</p>
+  <button class="btn pink" onclick="window.print()">Imprimir agora</button><button class="btn soft" onclick="downloadTemplate('collectionSheet')">Baixar molde SVG</button><button class="btn soft" onclick="makeFriendAtHome()">Ver passo a passo</button>
+  <div class="print-sheet-wrap"><div id="collectionSheet"></div></div>
+</section>
+
 <nav id="bottomNav" class="bottom">
   <a class="nav" href="#home"><b><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 15 13-12 13 12M7 12v17h18V12" fill="#e3dcff"/><path d="M13 29V19h6v10" fill="#ffafd2"/></svg></b><span data-i18n="home">Início</span></a>
   <a class="nav" href="#create"><b><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="23" r="5" fill="#ffafd2"/><circle cx="24" cy="23" r="5" fill="#dcd2ff"/><path d="m11 19 13-15M21 19 8 4"/></svg></b><span data-i18n="create">Criar</span></a>
-  <a class="nav" href="#challenges"><b><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h14v10a7 7 0 0 1-14 0Z" fill="#ffd66b"/><path d="M9 7H4v5q0 6 7 6M23 7h5v5q0 6-7 6M16 21v6M10 28h12"/></svg></b><span data-i18n="challenges">Desafios</span></a>
+  <a class="nav" href="#play"><b><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h14v10a7 7 0 0 1-14 0Z" fill="#ffd66b"/><path d="M9 7H4v5q0 6 7 6M23 7h5v5q0 6-7 6M16 21v6M10 28h12"/></svg></b><span>Jogar</span></a>
   <a class="nav" href="#shop"><b><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="22" height="20" rx="4" fill="#ffafd2"/><path d="M11 11V7a5 5 0 0 1 10 0v4"/></svg></b><span data-i18n="shop">Loja</span></a>
   <a class="nav" href="#profile"><b><svg class="ui-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="#65527c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="10" r="6" fill="#bda5ff"/><path d="M4 29a12 11 0 0 1 24 0Z" fill="#e3dcff"/></svg></b><span data-i18n="profile">Perfil</span></a>
 </nav>
 </div>
 
 <script src="./ui-icons.js"></script>
-<script>
-const translations = {
-  pt:{chooseLang:'Escolha seu idioma para começar.',whatToday:'O que você quer fazer hoje?',createChallengeExplore:'Crie, cumpra desafios e descubra novos Squishes.',createSquish:'Criar um Squish',challenges:'Desafios',materials:'Materiais',explore:'Explorar',createYourSquish:'Crie seu Squish',materialsShop:'Materiais e Loja',mySquishWorld:'Meu Mundo Squish',home:'Início',create:'Criar',shop:'Loja',profile:'Perfil'},
-  en:{chooseLang:'Choose your language to get started.',whatToday:'What do you want to make today?',createChallengeExplore:'Create, complete challenges and discover new Squishes.',createSquish:'Make a Squish',challenges:'Challenges',materials:'Materials',explore:'Explore',createYourSquish:'Make your Squish',materialsShop:'Materials & Shop',mySquishWorld:'My Squish World',home:'Home',create:'Create',shop:'Shop',profile:'Profile'},
-  es:{chooseLang:'Elige tu idioma para comenzar.',whatToday:'¿Qué quieres hacer hoy?',createChallengeExplore:'Crea, completa desafíos y descubre nuevos Squishes.',createSquish:'Crear un Squish',challenges:'Desafíos',materials:'Materiales',explore:'Explorar',createYourSquish:'Crea tu Squish',materialsShop:'Materiales y Tienda',mySquishWorld:'Mi Mundo Squish',home:'Inicio',create:'Crear',shop:'Tienda',profile:'Perfil'},
-  zh:{chooseLang:'选择语言开始使用。',whatToday:'你今天想做什么？',createChallengeExplore:'创作、完成挑战并发现新的 Squish。',createSquish:'制作 Squish',challenges:'挑战',materials:'材料',explore:'探索',createYourSquish:'制作你的 Squish',materialsShop:'材料与商店',mySquishWorld:'我的 Squish 世界',home:'首页',create:'制作',shop:'商店',profile:'我的'}
-};
-
-let saved = JSON.parse(localStorage.getItem('squishFunnyState') || '{}');
-let points=saved.points||0, made=saved.made||0, achievements=saved.achievements||0, language=saved.language||'pt';
-let earnedPoints=Math.max(saved.earnedPoints||0,points);
-let inventory=saved.inventory&&typeof saved.inventory==='object'&&!Array.isArray(saved.inventory)?saved.inventory:{};
-const materialCatalog={
-  'paper-white':{name:'Papel branco',icon:'paper',price:10},
-  'paper-colors':{name:'Papel colorido',icon:'paper',price:20},
-  'filling-soft':{name:'Enchimento macio',icon:'filling',price:15},
-  'filling-cloud':{name:'Enchimento nuvem',icon:'filling',price:25},
-  'markers-basic':{name:'Canetinhas de 12 cores',icon:'markers',price:30},
-  'markers-rainbow':{name:'Canetinhas arco-íris',icon:'markers',price:50}
-};
-
-function updateShop(){
-  document.querySelectorAll('[data-shop-balance]').forEach(el=>el.textContent=points+' pontos');
-  document.querySelectorAll('[data-buy-item]').forEach(button=>{
-    const id=button.dataset.buyItem, item=materialCatalog[id], owned=inventory[id]===true;
-    button.disabled=owned||points<item.price;
-    button.textContent=owned?'✓ Adquirido':points<item.price?'Faltam '+(item.price-points)+' pontos':'Comprar por '+item.price+' pontos';
-  });
-  const container=document.getElementById('materialInventory');
-  container.replaceChildren();
-  const owned=Object.keys(materialCatalog).filter(id=>inventory[id]===true);
-  if(!owned.length){container.textContent='Você ainda não tem materiais. Ganhe pontos nos desafios e escolha seus primeiros itens na loja.';return;}
-  const list=document.createElement('ul');list.className='inventory-list';
-  owned.forEach(id=>{const li=document.createElement('li');li.innerHTML=iconSVG(materialCatalog[id].icon);li.append(document.createTextNode(' '+materialCatalog[id].name));list.append(li);});
-  container.append(list);
-}
-function buyMaterial(id){
-  const item=materialCatalog[id];
-  if(!item||inventory[id]===true||points<item.price) return;
-  points-=item.price;inventory[id]=true;
-  try{saveState();}catch(error){
-    points+=item.price;delete inventory[id];
-    document.querySelectorAll('.shop-feedback').forEach(el=>el.textContent='Não foi possível salvar a compra. Seus pontos foram mantidos. Tente novamente.');
-    return;
-  }
-  updateProfile();
-  document.querySelectorAll('.shop-feedback').forEach(el=>el.textContent=item.name+' adquirido! Está em Meus materiais no seu perfil.');
-}
 
 
-function applyLanguage(){
-  document.documentElement.lang = language==='zh' ? 'zh-CN' : language;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.dataset.i18n;
-    if(translations[language] && translations[language][k]) el.textContent=translations[language][k];
-  });
-}
-function saveState(){
-  localStorage.setItem('squishFunnyState', JSON.stringify({...saved,points,earnedPoints,made,achievements,language,inventory}));
-}
-function chooseLanguage(lang){
-  language=lang;
-  applyLanguage();
-  saveState();
-  document.getElementById('bottomNav').style.display='flex';
-  show('home');
-}
-function show(id){
-  if(location.hash !== '#'+id) location.hash=id;
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  const nav=document.getElementById('bottomNav');
-  nav.style.display = id==='language' ? 'none':'flex';
-  document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.getAttribute('href')==='#'+(id.startsWith('shop-')?'shop':id)));
-  document.getElementById(id).scrollTop=0;
-}
-function syncScreen(){
-  const id=location.hash.slice(1)||'language';
-  if(document.getElementById(id)?.classList.contains('screen')) show(id);
-}
-window.addEventListener('hashchange',syncScreen);
-syncScreen();
-function nav(el,id){ show(id); }
-function selectModel(name,emoji,difficulty,time){
-  const title=document.getElementById('tutorialTitle');title.textContent=name+' ';title.insertAdjacentHTML('beforeend',iconSVG(emoji));
-  document.getElementById('tutorialMeta').textContent=difficulty+' • '+time;
-  document.getElementById('tutorialDraw').textContent='Faça duas formas iguais de “'+name+'” no papel.';
-}
-function addPoints(n){
-  points+=n; earnedPoints+=n; achievements+=1; updateProfile(); saveState();
-  alert(language==='en' ? 'Challenge completed! +'+n+' points' :
-        language==='es' ? '¡Desafío completado! +'+n+' puntos' :
-        language==='zh' ? '挑战完成！+'+n+' 分' :
-        'Desafio concluído! Você ganhou '+n+' pontos');
-}
-function completeSquish(){
-  points+=25; earnedPoints+=25; made+=1; achievements+=1; updateProfile(); saveState();
-  alert(language==='en' ? 'You did it! +25 points' :
-        language==='es' ? '¡Lo lograste! +25 puntos' :
-        language==='zh' ? '完成啦！+25 分' :
-        'Você conseguiu! +25 pontos');
-  show('profile');
-}
-function updateProfile(){
-  let level='Iniciante';
-  if(earnedPoints>=250) level='Mestre do Squish';
-  else if(earnedPoints>=100) level='Criador';
-  document.getElementById('levelText').textContent=level+' • '+earnedPoints+' pontos ganhos';
-  document.getElementById('madeCount').textContent=made+' feitos';
-  document.getElementById('achievementCount').textContent=achievements+' conquistas';
-  document.getElementById('progressBar').style.width=Math.min(earnedPoints%100,100)+'%';
-  updateShop();
-}
 
 
-const printableData = {
-  butter:{name:'Pink Guava Butter',kind:'box',c1:'#dff7a7',c2:'#ff9fbd',accent:'#e64d78',label:'PINK GUAVA',title:'BUTTER',sub:'4 oz • NET WT. 113 g',fruit:'GUAVA'},
-  strawmilk:{name:'Strawberry Milk',kind:'box',c1:'#fff0f4',c2:'#ffadc8',accent:'#d94673',label:'STRAWBERRY',title:'MILK',sub:'sweet & soft',fruit:'BERRY'},
-  peachjuice:{name:'Peach Juice',kind:'box',c1:'#fff0b0',c2:'#ffb694',accent:'#e86a50',label:'PEACH',title:'JUICE',sub:'fresh & cute',fruit:'PEACH'},
-  meloncube:{name:'Melon Cube',kind:'box',c1:'#e0f7a8',c2:'#a8ebd1',accent:'#4c9f7f',label:'MELON',title:'CUBE',sub:'soft melon squish',fruit:'MELON'},
-  blueyogurt:{name:'Blueberry Yogurt',kind:'box',c1:'#d8e5ff',c2:'#cab5ff',accent:'#6858be',label:'BLUEBERRY',title:'YOGURT',sub:'berry cream',fruit:'BERRY'},
-  lemoncandy:{name:'Lemon Candy',kind:'box',c1:'#fff5a7',c2:'#ffd8a3',accent:'#d59f16',label:'LEMON',title:'CANDY',sub:'sweet & sour',fruit:'LEMON'},
-  watergum:{name:'Watermelon Gum',kind:'box',c1:'#d7f4b3',c2:'#ff9bb2',accent:'#df4b68',label:'WATERMELON',title:'GUM',sub:'bubble & smile',fruit:'MELON'},
-  mangocream:{name:'Mango Cream',kind:'box',c1:'#fff0a8',c2:'#ffc083',accent:'#e27e27',label:'MANGO',title:'CREAM',sub:'tropical soft',fruit:'MANGO'},
-  grapesoda:{name:'Grape Soda',kind:'box',c1:'#e7dcff',c2:'#bba2f2',accent:'#6d50a8',label:'GRAPE',title:'SODA',sub:'fizzy cute',fruit:'GRAPE'},
-  cherrycereal:{name:'Cherry Cereal',kind:'box',c1:'#ffe3ed',c2:'#ffadc2',accent:'#d34a6e',label:'CHERRY',title:'CEREAL',sub:'happy breakfast',fruit:'CHERRY'},
-  bananapud:{name:'Banana Pudding',kind:'box',c1:'#fff4b7',c2:'#ffe0a0',accent:'#c89722',label:'BANANA',title:'PUDDING',sub:'creamy & soft',fruit:'BANANA'},
-  kiwicookies:{name:'Kiwi Cookies',kind:'box',c1:'#e8f5b8',c2:'#b6d98f',accent:'#6c944e',label:'KIWI',title:'COOKIES',sub:'tiny treats',fruit:'KIWI'},
-  orangejelly:{name:'Orange Jelly',kind:'box',c1:'#ffe2a9',c2:'#ffb77e',accent:'#df7b2b',label:'ORANGE',title:'JELLY',sub:'juicy squish',fruit:'ORANGE'},
-  pinechips:{name:'Pineapple Snack',kind:'box',c1:'#fff0a4',c2:'#c8eda5',accent:'#aa8a1b',label:'PINEAPPLE',title:'SNACK',sub:'crispy cute',fruit:'PINE'},
-  appletea:{name:'Apple Tea',kind:'box',c1:'#e5f1b1',c2:'#ffb1b1',accent:'#c74e55',label:'APPLE',title:'TEA',sub:'fruity & calm',fruit:'APPLE'},
-  coconutmilk:{name:'Coconut Milk',kind:'box',c1:'#f9f2df',c2:'#cfeadf',accent:'#688e84',label:'COCONUT',title:'MILK',sub:'smooth & sweet',fruit:'COCO'},
-  donutbox:{name:'Donut Box',kind:'box',c1:'#ffe0ec',c2:'#d8c3ff',accent:'#9c5f96',label:'STRAWBERRY',title:'DONUT',sub:'sprinkle joy',fruit:'DONUT'},
-  cupcakemix:{name:'Cupcake Mix',kind:'box',c1:'#d9ecff',c2:'#ffd1e7',accent:'#6d7ab8',label:'VANILLA',title:'CUPCAKE',sub:'bake a smile',fruit:'CUP'},
-  rainbowcandy:{name:'Rainbow Candy',kind:'box',c1:'#e3f4ff',c2:'#ffd2ea',accent:'#6f6ab8',label:'RAINBOW',title:'CANDY',sub:'colorful treats',fruit:'RAINBOW'},
-  vanillacream:{name:'Vanilla Cream',kind:'box',c1:'#fff7d8',c2:'#f0d8ff',accent:'#9872a5',label:'VANILLA',title:'CREAM',sub:'soft cloud',fruit:'VANILLA'}
-};
-
-function boxNetSVG(d){
-  const a=d.accent||'#d84a6c';
-  return `
-  <svg viewBox="0 0 794 1123" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Molde ${d.name}">
-    <defs>
-      <linearGradient id="printGradient" x1="0" y1="1" x2="1" y2="0">
-        <stop offset="0" stop-color="${d.c1}"/>
-        <stop offset=".55" stop-color="#fff1df"/>
-        <stop offset="1" stop-color="${d.c2}"/>
-      </linearGradient>
-      <style>
-        .cut{stroke:${a};stroke-width:3;fill:none}
-        .fold{stroke:${a};stroke-width:2;stroke-dasharray:12 9;fill:none;opacity:.72}
-        .main{font-family:Arial,sans-serif;fill:${a}}
-        .note{font-family:Arial,sans-serif;fill:#6f6575}
-      </style>
-    </defs>
-
-    <rect width="794" height="1123" fill="#fff"/>
-    <text x="397" y="48" text-anchor="middle" class="note" font-size="19" font-weight="700">${d.name}</text>
-    <text x="397" y="76" text-anchor="middle" class="note" font-size="13">linha contínua = recortar • linha tracejada = dobrar</text>
-
-    <!-- Large reference-style cross net -->
-    <path d="
-      M180 270
-      L305 270
-      L305 145
-      Q305 132 318 132
-      L580 132
-      Q594 132 594 146
-      L594 270
-      L690 270
-      Q702 270 702 282
-      L702 412
-      Q702 424 690 424
-      L594 424
-      L594 828
-      Q594 842 580 842
-      L318 842
-      Q305 842 305 828
-      L305 424
-      L180 424
-      Q168 424 168 412
-      L168 282
-      Q168 270 180 270
-      Z" fill="url(#printGradient)" stroke="${a}" stroke-width="3"/>
-
-    <!-- Fold guides -->
-    <line x1="305" y1="270" x2="594" y2="270" class="fold"/>
-    <line x1="305" y1="424" x2="594" y2="424" class="fold"/>
-    <line x1="305" y1="590" x2="594" y2="590" class="fold"/>
-    <line x1="305" y1="704" x2="594" y2="704" class="fold"/>
-    <line x1="305" y1="190" x2="594" y2="190" class="fold"/>
-    <line x1="305" y1="270" x2="305" y2="424" class="fold"/>
-    <line x1="594" y1="270" x2="594" y2="424" class="fold"/>
-
-    <!-- Front artwork, inspired by reference composition but original -->
-    <text x="408" y="322" text-anchor="middle" class="main" font-size="25">${d.label}</text>
-    <text x="408" y="365" text-anchor="middle" class="main" font-size="46" font-weight="900">${d.title}</text>
-    <text x="242" y="342" text-anchor="middle" class="main" font-size="26" font-weight="700">4 oz.</text>
-    <text x="242" y="371" text-anchor="middle" class="main" font-size="15">NET WT. (113 G)</text>
-
-    <!-- Original little fruit badge -->
-    <g transform="translate(530,308)">
-      <ellipse cx="30" cy="34" rx="27" ry="30" fill="#ffffff" opacity=".82" stroke="${a}" stroke-width="2"/>
-      <ellipse cx="30" cy="35" rx="17" ry="20" fill="${d.c2}" stroke="${a}" stroke-width="1.4"/>
-      <path d="M27 13 Q30 3 37 13" fill="${d.c1}" stroke="${a}" stroke-width="1.5"/>
-      <circle cx="25" cy="33" r="2" fill="${a}"/><circle cx="35" cy="38" r="2" fill="${a}"/>
-      <circle cx="32" cy="28" r="1.6" fill="${a}"/>
-    </g>
-
-    <!-- Side/back decoration -->
-    <text x="450" y="520" text-anchor="middle" class="main" font-size="18" opacity=".72">${d.sub}</text>
-    <text x="450" y="656" text-anchor="middle" class="main" font-size="16" opacity=".62">SQUISH FUNNY • PAPER SQUISH</text>
-
-    <!-- Scissor and fold legend -->
-    <g transform="translate(170,920)">
-      <rect x="0" y="0" width="454" height="108" rx="18" fill="#faf7fb" stroke="#e7dfe9"/>
-      <text x="25" y="36" class="note" font-size="15" font-weight="700">1. Imprima em 100% / tamanho real</text>
-      <text x="25" y="61" class="note" font-size="15">2. Recorte somente o contorno externo</text>
-      <text x="25" y="86" class="note" font-size="15">3. Dobre nas linhas tracejadas e monte</text>
-    </g>
-  </svg>`;
-}
-
-function shapeSVG(d){
-  const shapeMap={
-    'strawberry':'M200 280 C145 205 90 278 110 390 C132 510 190 620 250 680 C310 620 368 510 390 390 C410 278 355 205 300 280 C270 240 230 240 200 280 Z',
-    'watermelon':'M95 410 A155 155 0 0 0 405 410 L95 410 Z',
-    'apple':'M112 400 C92 292 170 250 250 294 C330 250 408 292 388 400 C370 525 307 627 250 665 C193 627 130 525 112 400 Z',
-    'orange':'M250 265 C355 265 415 345 400 455 C383 580 315 650 250 650 C185 650 117 580 100 455 C85 345 145 265 250 265 Z',
-    'lemon':'M95 450 C118 332 192 275 250 248 C308 275 382 332 405 450 C382 568 308 625 250 652 C192 625 118 568 95 450 Z',
-    'pear':'M250 255 C302 280 322 335 320 380 C395 415 392 540 330 612 C286 665 214 665 170 612 C108 540 105 415 180 380 C178 335 198 280 250 255 Z',
-    'kiwi':'M250 260 C360 260 420 340 405 455 C390 570 325 645 250 645 C175 645 110 570 95 455 C80 340 140 260 250 260 Z',
-    'pineapple':'M250 315 C335 315 370 395 360 500 C350 595 305 655 250 655 C195 655 150 595 140 500 C130 395 165 315 250 315 Z',
-    'cherries':'M140 470 C95 405 140 345 205 365 C250 380 265 440 235 490 C205 540 160 535 140 470 Z M265 470 C220 405 265 345 330 365 C375 380 390 440 360 490 C330 540 285 535 265 470 Z',
-    'grapes':'M250 300 C310 305 350 350 342 405 C390 425 388 490 350 515 C360 575 300 615 250 585 C200 615 140 575 150 515 C112 490 110 425 158 405 C150 350 190 305 250 300 Z'
-  };
-  const p=shapeMap[d.emoji]||shapeMap['strawberry'];
-  function face(x){return `<g transform="translate(${x},0)"><path d="${p}" fill="url(#fruit)" stroke="#d84a6c" stroke-width="4"/>${printIconSVG(d.emoji,209,348,82)}<circle cx="225" cy="500" r="7" fill="#493f51"/><circle cx="275" cy="500" r="7" fill="#493f51"/><path d="M235 527 Q250 545 265 527" fill="none" stroke="#493f51" stroke-width="5"/><text x="250" y="590" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="#8c3659">${d.name.toUpperCase()}</text></g>`}
-  return `<svg viewBox="0 0 1123 794" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Molde ${d.name}"><defs><linearGradient id="fruit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${d.c1}"/><stop offset="1" stop-color="${d.c2}"/></linearGradient></defs><rect width="1123" height="794" fill="#fff"/><text x="561" y="42" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#5d5366">${d.name} • FRENTE E VERSO PRONTOS</text><text x="561" y="68" text-anchor="middle" font-family="Arial" font-size="14" fill="#5d5366">Recorte as duas peças, una com fita deixando uma abertura e coloque enchimento</text>${face(20)}${face(575)}<text x="561" y="748" text-anchor="middle" font-family="Arial" font-size="14" fill="#5d5366">Linha rosa = recorte • deixe cerca de 1 cm sem fechar para colocar o enchimento</text></svg>`;
-}
-
-function openPrintable(key){
-  const d=printableData[key]||printableData.butter;
-  document.getElementById('printTitle').textContent=d.name;
-  document.getElementById('printDesc').textContent='Molde de embalagem aberto, no estilo da referência: imprima em tamanho real, recorte o contorno externo e dobre nas linhas tracejadas.';
-  document.getElementById('printSheet').innerHTML=boxNetSVG(d);
-}
-openPrintable('butter');
-
-
-// --- Squish Funny Plus: criador personalizado ---
-const customSquish={shape:'butter',color:'#ffd66b',eyes:'●|●',mouth:'◡',detail:''};
-function buyPlus(){
-  const ok = confirm('Comprar Squish Funny Plus por R$ 5,00?\n\nNesta versão de demonstração não há cobrança real.');
-  if(ok){
-    unlockPlus();
-    alert('Plus liberado na demonstração! No aplicativo publicado, aqui entra o pagamento real de R$ 5,00.');
-  }
-}
-
-function unlockPlus(){
-  document.getElementById('plusGate').style.display='none';
-  document.getElementById('plusBuilder').style.display='block';
-  renderCustom();
-}
-function setCustom(type,value,el){
-  customSquish[type]=value;
-  const parent=el && el.parentElement;
-  if(parent) parent.querySelectorAll('button').forEach(b=>b.classList.remove('selected'));
-  if(el) el.classList.add('selected');
-  renderCustom();
-}
-function renderCustom(){
-  const p=document.getElementById('customPreview'); if(!p) return;
-  const e=customSquish.eyes.split('|');
-  p.innerHTML=`<div class="custom-shape shape-${customSquish.shape}" style="--custom:${customSquish.color}"><div class="face"><div class="eyes"><span>${e[0]}</span><span>${e[1]||e[0]}</span></div><div class="mouth">${customSquish.mouth}</div></div><div class="detail">${iconSVG(customSquish.detail)}</div></div>`;
-}
-function randomCustom(){
-  const shapes=['butter','heart','cloud','round','star'];
-  const colors=['#ffd66b','#ff9fc6','#b69cff','#8ee7cf','#7cc8ff','#ffad7a'];
-  const eyes=['●|●','^|^','♡|♡','✦|✦','•|◡'];
-  const mouths=['◡','ᴗ','ω','○','﹏'];
-  const details=['','bow','flower','sparkles','strawberry'];
-  customSquish.shape=shapes[Math.floor(Math.random()*shapes.length)];
-  customSquish.color=colors[Math.floor(Math.random()*colors.length)];
-  customSquish.eyes=eyes[Math.floor(Math.random()*eyes.length)];
-  customSquish.mouth=mouths[Math.floor(Math.random()*mouths.length)];
-  customSquish.detail=details[Math.floor(Math.random()*details.length)];
-  document.querySelectorAll('#plusBuilder .selected').forEach(b=>b.classList.remove('selected'));
-  renderCustom();
-}
-function customShapePath(shape,xoff=0){
-  const m={
-    butter:`M${80+xoff} 170 Q${80+xoff} 125 ${125+xoff} 125 H${375+xoff} Q${420+xoff} 125 ${420+xoff} 170 V430 Q${420+xoff} 470 ${380+xoff} 470 H${120+xoff} Q${80+xoff} 470 ${80+xoff} 430 Z`,
-    heart:`M${250+xoff} 465 C${210+xoff} 420 ${95+xoff} 340 ${95+xoff} 235 C${95+xoff} 145 ${205+xoff} 115 ${250+xoff} 195 C${295+xoff} 115 ${405+xoff} 145 ${405+xoff} 235 C${405+xoff} 340 ${290+xoff} 420 ${250+xoff} 465 Z`,
-    cloud:`M${120+xoff} 410 C${65+xoff} 410 ${60+xoff} 325 ${120+xoff} 302 C${105+xoff} 220 ${200+xoff} 170 ${260+xoff} 225 C${315+xoff} 155 ${430+xoff} 225 ${415+xoff} 310 C${475+xoff} 330 ${460+xoff} 410 ${400+xoff} 410 Z`,
-    round:`M${250+xoff} 110 A175 175 0 1 1 ${249+xoff} 110 Z`,
-    star:`M${250+xoff} 105 L${292+xoff} 225 L${420+xoff} 228 L${317+xoff} 304 L${355+xoff} 430 L${250+xoff} 355 L${145+xoff} 430 L${183+xoff} 304 L${80+xoff} 228 L${208+xoff} 225 Z`
-  }; return m[shape]||m.butter;
-}
-function customFaceSVG(x){
-  const e=customSquish.eyes.split('|');
-  return `<path d="${customShapePath(customSquish.shape,x)}" fill="${customSquish.color}" stroke="#8e63ee" stroke-width="4"/><text x="${220+x}" y="300" text-anchor="middle" font-family="Arial" font-size="42" fill="#44394f">${e[0]}</text><text x="${280+x}" y="300" text-anchor="middle" font-family="Arial" font-size="42" fill="#44394f">${e[1]||e[0]}</text><text x="${250+x}" y="355" text-anchor="middle" font-family="Arial" font-size="43" fill="#44394f">${customSquish.mouth}</text>${printIconSVG(customSquish.detail,335+x,135,50)}`;
-}
-function customPrintableSVG(){
-  return `<svg viewBox="0 0 1123 794" xmlns="http://www.w3.org/2000/svg"><rect width="1123" height="794" fill="#fff"/><text x="561" y="48" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#5d5366">MEU SQUISH PLUS • FRENTE E VERSO</text><text x="561" y="76" text-anchor="middle" font-family="Arial" font-size="14" fill="#6f6575">Recorte as duas peças, una as bordas e deixe uma abertura para colocar enchimento</text>${customFaceSVG(15)}${customFaceSVG(575)}<line x1="561" y1="100" x2="561" y2="670" stroke="#eadff1" stroke-dasharray="9 8"/><text x="561" y="744" text-anchor="middle" font-family="Arial" font-size="14" fill="#6f6575">Exclusivo Squish Funny Plus • criado por você</text></svg>`;
-}
-function openCustomPrintable(){
-  const el=document.getElementById('customPrintSheet');
-  if(el) el.innerHTML=customPrintableSVG();
-  location.hash='custom-print';
-}
-renderCustom();
-
-applyLanguage();
-updateProfile();
-</script>
-
-<script>
-(function(){
-  let deferredPrompt = null;
-  const installBtn = document.getElementById('installBtn');
-  const installHelp = document.getElementById('installHelp');
-  const installCard = document.getElementById('installCard');
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-  if (isStandalone && installCard) installCard.style.display='none';
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    if (installBtn) installBtn.textContent = 'Instalar';
-  });
-
-  if (installBtn) installBtn.addEventListener('click', async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-      return;
-    }
-    const ua = navigator.userAgent || '';
-    const ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    installHelp.style.display='block';
-    installHelp.innerHTML = ios
-      ? '<strong>No iPhone:</strong> abra esta página no Safari, toque em <strong>Compartilhar</strong> e depois em <strong>Adicionar à Tela de Início</strong>.'
-      : '<strong>No Android:</strong> abra o menu do navegador e escolha <strong>Instalar app</strong> ou <strong>Adicionar à tela inicial</strong>.';
-  });
-
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-  }
-})();
-</script>
-
+<script src="./i18n.js"></script>
+<script src="./app.js"></script>
+<script src="./game.js"></script>
+<script src="./pwa.js"></script>
 </body>
 </html>
 

@@ -1,7 +1,16 @@
-const CACHE_NAME = 'squish-funny-v4';
+const PREFIX='squish-funny-'+new URL(self.registration.scope).pathname+'-';
+const CACHE_NAME = PREFIX+'808802278fb8';
 const ASSETS = [
   './',
   './index.html',
+  './app.css',
+  './app.js',
+  './game.js',
+  './game.css',
+  './i18n.js',
+  './pwa.js',
+  './icon.svg',
+  './favicon.png',
   './ui-icons.js',
   './manifest.webmanifest',
   './icon-192.png',
@@ -10,30 +19,20 @@ const ASSETS = [
   './apple-touch-icon.png'
 ];
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
-  self.skipWaiting();
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)).then(()=>self.skipWaiting()));
 });
 self.addEventListener('activate', event => {
-  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith('squish-funny-') && k !== CACHE_NAME).map(k => caches.delete(k)))));
-  self.clients.claim();
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => (k.startsWith(PREFIX)||/^squish-funny-v\d+$/.test(k)) && k !== CACHE_NAME).map(k => caches.delete(k)))).then(()=>self.clients.claim()));
 });
 self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET') return;
+  const url=new URL(event.request.url);
+  if (event.request.method !== 'GET'||url.origin!==self.location.origin||!url.href.startsWith(self.registration.scope)) return;
   if (event.request.mode === 'navigate') {
-    event.respondWith(fetch(event.request).then(async response => {
-      if (response.ok) {
-        const cache = await caches.open(CACHE_NAME);
-        await cache.put('./index.html', response.clone());
-      }
-      return response;
-    }).catch(() => caches.match('./index.html')));
+    // Serve HTML and scripts from the same complete release, online or offline.
+    event.respondWith(caches.open(CACHE_NAME).then(async cache=>(await cache.match('./index.html'))||fetch(event.request)));
     return;
   }
-  event.respondWith(
-    caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
-      const copy = response.clone();
-      caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
-      return response;
-    }).catch(() => caches.match('./index.html')))
-  );
+  // Only cache our own assets. Never send HTML in place of missing scripts/images.
+  if(ASSETS.some(path=>new URL(path,self.registration.scope).href===url.href))
+    event.respondWith(caches.open(CACHE_NAME).then(async cache=>(await cache.match(event.request))||fetch(event.request)));
 });

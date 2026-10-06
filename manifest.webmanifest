@@ -1,6 +1,7 @@
 {
   "name": "Squish Funny",
   "short_name": "Squish Funny",
+  "id": "./",
   "description": "Crie, aprenda e imprima modelos de paper squish. Inclui demonstração do Squish Funny Plus.",
   "lang": "pt-BR",
   "start_url": "./index.html",
@@ -8,7 +9,7 @@
   "display": "standalone",
   "background_color": "#fff9fc",
   "theme_color": "#ff77b7",
-  "orientation": "portrait-primary",
+  "categories": ["entertainment", "education"],
   "icons": [
     {
       "src": "./icon-192.png",
